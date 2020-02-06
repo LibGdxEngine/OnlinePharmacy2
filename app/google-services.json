@@ -1,0 +1,127 @@
+{
+  "project_info": {
+    "project_number": "734761226883",
+    "firebase_url": "https://facebook-video-downloade-c8bdd.firebaseio.com",
+    "project_id": "facebook-video-downloade-c8bdd",
+    "storage_bucket": "facebook-video-downloade-c8bdd.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:734761226883:android:abf8479cc561831f3441b6",
+        "android_client_info": {
+          "package_name": "com.devahmed.demo.onlinepharmacy"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "734761226883-402rqh3d8amt5b8pccc7epc1k79md376.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDkJIY6YJBinX-lVaIj2vbBncHAlopeJj8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "734761226883-402rqh3d8amt5b8pccc7epc1k79md376.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:734761226883:android:f86316972c772d74",
+        "android_client_info": {
+          "package_name": "com.devteam.downloadFromFB"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "734761226883-402rqh3d8amt5b8pccc7epc1k79md376.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDkJIY6YJBinX-lVaIj2vbBncHAlopeJj8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "734761226883-402rqh3d8amt5b8pccc7epc1k79md376.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:734761226883:android:05a3a98c693eb78f",
+        "android_client_info": {
+          "package_name": "com.devteam.fbdownloader"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "734761226883-402rqh3d8amt5b8pccc7epc1k79md376.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDkJIY6YJBinX-lVaIj2vbBncHAlopeJj8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "734761226883-402rqh3d8amt5b8pccc7epc1k79md376.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:734761226883:android:d1192f4ce94b43c4",
+        "android_client_info": {
+          "package_name": "com.devteam.myapplication"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "734761226883-402rqh3d8amt5b8pccc7epc1k79md376.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDkJIY6YJBinX-lVaIj2vbBncHAlopeJj8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "734761226883-402rqh3d8amt5b8pccc7epc1k79md376.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

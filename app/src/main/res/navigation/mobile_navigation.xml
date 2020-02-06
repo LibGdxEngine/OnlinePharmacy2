@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/mobile_navigation"
+    app:startDestination="@+id/nav_home"
+    tools:ignore="UnusedNavigation">
+
+    <fragment
+        android:id="@+id/nav_home"
+        android:name="com.devahmed.demo.onlinepharmacy.Screens.Home.HomeFragment"
+        android:label="@string/menu_home" />
+
+    <fragment
+        android:id="@+id/nav_beauty"
+        android:name="com.devahmed.demo.onlinepharmacy.Screens.ProductsShow.ProducstShowFragment"
+        android:label="@string/menu_gallery"
+        tools:layout="@layout/fragment_show_products" >
+        <argument
+            android:name="category"
+            app:argType="string"
+            android:defaultValue="sssss" />
+    </fragment>
+
+
+    <fragment
+        android:id="@+id/nav_diabetes"
+        android:name="com.devahmed.demo.onlinepharmacy.Screens.AddProducts.AddProductFragment"
+        android:label="@string/menu_tools"
+        tools:layout="@layout/fragment_add_product" />
+
+
+</navigation>
