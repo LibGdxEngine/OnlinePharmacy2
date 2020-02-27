@@ -5,12 +5,12 @@ import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
 
-import com.devahmed.demo.onlinepharmacy.Models.Product;
+import com.devahmed.demo.onlinepharmacy.Models.SubCategory;
 import com.smarteist.autoimageslider.SliderViewAdapter;
 
 import java.util.List;
 
-public class ProductOffersAdapter extends SliderViewAdapter<ProductOffersAdapter.ViewHolder> implements ProductListItemView.Listener  {
+public class ProductOffersAdapter extends SliderViewAdapter<ProductOffersAdapter.ViewHolder> implements OffersListItemView.Listener  {
 
     private OnOfferItemClickListener mListener;
 
@@ -21,12 +21,13 @@ public class ProductOffersAdapter extends SliderViewAdapter<ProductOffersAdapter
 
 
     public interface OnOfferItemClickListener {
-        void OnItemClicked(Product Product);
+        void OnItemClicked(SubCategory category);
+        void OnItemLongClicked(SubCategory subCategory);
     }
 
-    private List<Product> ProductsList;
+    private List<SubCategory> ProductsList;
 
-    public ProductOffersAdapter(List<Product> ProductsList, OnOfferItemClickListener listener) {
+    public ProductOffersAdapter(List<SubCategory> ProductsList, OnOfferItemClickListener listener) {
         this.ProductsList = ProductsList;
         this.mListener = listener;
     }
@@ -40,12 +41,12 @@ public class ProductOffersAdapter extends SliderViewAdapter<ProductOffersAdapter
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-        Product model = ProductsList.get(position);
+        SubCategory model = ProductsList.get(position);
         holder.recyclerViewListItemMvcImp.bindData(model);
     }
 
 
-    public void setList(List<Product> newList) {
+    public void setList(List<SubCategory> newList) {
         ProductsList = newList;
         notifyDataSetChanged();
     }
@@ -62,8 +63,13 @@ public class ProductOffersAdapter extends SliderViewAdapter<ProductOffersAdapter
 
 
     @Override
-    public void onItemClicked(Product model) {
+    public void onItemClicked(SubCategory model) {
         mListener.OnItemClicked(model);
+    }
+
+    @Override
+    public void onItemLongClicked(SubCategory subCategory) {
+        mListener.OnItemLongClicked(subCategory);
     }
 
 }

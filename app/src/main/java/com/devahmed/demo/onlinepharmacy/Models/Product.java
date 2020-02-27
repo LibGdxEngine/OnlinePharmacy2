@@ -7,33 +7,10 @@ public class Product {
     private int price;
     private String image;
     private String category;
-    private boolean isInOffer;
-    private boolean isPromotioned;
-    private boolean isBestSeller;
 
-    public boolean isInOffer() {
-        return isInOffer;
-    }
 
-    public void setInOffer(boolean inOffer) {
-        isInOffer = inOffer;
-    }
 
-    public boolean isPromotioned() {
-        return isPromotioned;
-    }
 
-    public void setPromotioned(boolean promotioned) {
-        isPromotioned = promotioned;
-    }
-
-    public boolean isBestSeller() {
-        return isBestSeller;
-    }
-
-    public void setBestSeller(boolean bestSeller) {
-        isBestSeller = bestSeller;
-    }
 
     public Product() {
     }
@@ -43,9 +20,6 @@ public class Product {
         this.price = price;
         this.image = image;
         this.category = category;
-        this.isInOffer = false;
-        this.isBestSeller = false;
-        this.isPromotioned = false;
     }
 
 

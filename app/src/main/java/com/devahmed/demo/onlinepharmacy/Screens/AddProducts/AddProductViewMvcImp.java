@@ -5,10 +5,12 @@ import android.net.Uri;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
+import android.widget.Spinner;
 import android.widget.TextView;
 import com.devahmed.demo.onlinepharmacy.Common.MVC.BaseObservableMvcView;
 import com.devahmed.demo.onlinepharmacy.R;
@@ -18,16 +20,16 @@ public class AddProductViewMvcImp extends BaseObservableMvcView<AddProductMvc.Li
 
 
     private FloatingActionButton _addBtn;
-    private TextView addpost_pickfromgallerytxtview , addpost_pickfromcameratxtview , addpost_dialogtitle;
+    private TextView addpost_pickfromgallerytxtview , addpost_pickfromcameratxtview , addpost_dialogtitle , priceTextView;
     private EditText _productName, _productPrice;
     private ProgressBar _progressbar;
     private ImageView _pickfromgallery , _pickfromcamera , addpost_fullviewImageView;
-    private CheckBox checkbox_offer , checkbox_promotion , checkbox_bestseller;
-
+    private CheckBox checkbox_offer ;
     public AddProductViewMvcImp(LayoutInflater inflater , ViewGroup parent) {
 
         setRootView(inflater.inflate(R.layout.fragment_add_product, parent , false ));
         addpost_dialogtitle = findViewById(R.id.addpost_dialogtitle);
+        priceTextView = findViewById(R.id.priceTextView);
         //Change the text of dialog title
         addpost_dialogtitle.setText("Add New Product");
         _progressbar = findViewById(R.id.addpost_progressbar);
@@ -42,8 +44,6 @@ public class AddProductViewMvcImp extends BaseObservableMvcView<AddProductMvc.Li
         _pickfromgallery = findViewById(R.id.addpost_pickfromgalleryimage);
         addpost_fullviewImageView = findViewById(R.id.addpost_fullviewImageView);
         checkbox_offer = findViewById(R.id.checkbox_offer);
-        checkbox_promotion = findViewById(R.id.checkbox_promotion);
-        checkbox_bestseller = findViewById(R.id.checkbox_bestseller);
 
         _addBtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -73,14 +73,8 @@ public class AddProductViewMvcImp extends BaseObservableMvcView<AddProductMvc.Li
         });
     }
 
-    public boolean isPromotionChecked(){
-        return checkbox_promotion.isChecked();
-    }
     public boolean isOfferChecked(){
         return checkbox_offer.isChecked();
-    }
-    public boolean isBestsellerChecked(){
-        return checkbox_bestseller.isChecked();
     }
 
     public String getTitle(){
@@ -125,8 +119,20 @@ public class AddProductViewMvcImp extends BaseObservableMvcView<AddProductMvc.Li
         _productName.setText("");
         _productPrice.setText("");
         checkbox_offer.setChecked(false);
-        checkbox_bestseller.setChecked(false);
-        checkbox_promotion.setChecked(false);
         addpost_fullviewImageView.setVisibility(View.GONE);
+    }
+
+    public void activateCategoryMode(){
+        priceTextView.setVisibility(View.GONE);
+        _productPrice.setVisibility(View.GONE);
+        checkbox_offer.setVisibility(View.GONE);
+    }
+    public void activateSubCategoryMode(){
+        priceTextView.setVisibility(View.GONE);
+        _productPrice.setVisibility(View.GONE);
+        checkbox_offer.setVisibility(View.GONE);
+    }
+    public void activateProductMode(){
+        //DO NOTHING
     }
 }

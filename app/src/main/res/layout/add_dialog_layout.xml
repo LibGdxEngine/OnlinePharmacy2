@@ -48,12 +48,14 @@
             android:orientation="vertical">
 
             <LinearLayout
+                android:id="@+id/linearLayout2"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="32dp"
                 android:layout_marginTop="32dp"
                 android:layout_marginEnd="32dp"
                 android:layout_marginBottom="100dp"
+                android:gravity="center"
                 android:orientation="horizontal"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -64,22 +66,8 @@
                     android:id="@+id/checkbox_offer"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:text="Offer" />
+                    android:text="Make as offer " />
 
-                <CheckBox
-                    android:id="@+id/checkbox_promotion"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:text="Promotion" />
-
-                <CheckBox
-                    android:id="@+id/checkbox_bestseller"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:text="Best seller" />
             </LinearLayout>
 
             <LinearLayout
@@ -198,12 +186,11 @@
 
             <EditText
                 android:id="@+id/addpost_recipequantities"
-                android:layout_width="0dp"
-                android:layout_height="50dp"
+                android:layout_width="120dp"
+                android:layout_height="51dp"
                 android:layout_marginStart="16dp"
                 android:layout_marginTop="8dp"
-                android:layout_marginEnd="32dp"
-                android:layout_marginBottom="70dp"
+                android:layout_marginBottom="16dp"
                 android:background="@drawable/add_post_edittexts_background"
                 android:ems="10"
                 android:gravity="top"
@@ -216,11 +203,11 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/textView5"
+                app:layout_constraintTop_toBottomOf="@+id/priceTextView"
                 app:layout_constraintVertical_bias="0.0" />
 
             <TextView
-                android:id="@+id/textView5"
+                android:id="@+id/priceTextView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"

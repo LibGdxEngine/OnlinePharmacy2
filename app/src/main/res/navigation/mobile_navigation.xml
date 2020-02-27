@@ -3,31 +3,23 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/mobile_navigation"
-    app:startDestination="@+id/nav_home"
-    tools:ignore="UnusedNavigation">
+    app:startDestination="@+id/navigation_home">
 
     <fragment
-        android:id="@+id/nav_home"
-        android:name="com.devahmed.demo.onlinepharmacy.Screens.Home.HomeFragment"
-        android:label="@string/menu_home" />
+        android:id="@+id/navigation_home"
+        android:name="com.devahmed.demo.onlinepharmacy.ui.home.HomeFragment"
+        android:label="@string/title_home"
+        tools:layout="@layout/fragment_home" />
 
     <fragment
-        android:id="@+id/nav_beauty"
-        android:name="com.devahmed.demo.onlinepharmacy.Screens.ProductsShow.ProducstShowFragment"
-        android:label="@string/menu_gallery"
-        tools:layout="@layout/fragment_show_products" >
-        <argument
-            android:name="category"
-            app:argType="string"
-            android:defaultValue="sssss" />
-    </fragment>
-
+        android:id="@+id/navigation_dashboard"
+        android:name="com.devahmed.demo.onlinepharmacy.ui.dashboard.DashboardFragment"
+        android:label="@string/title_dashboard"
+        tools:layout="@layout/fragment_dashboard" />
 
     <fragment
-        android:id="@+id/nav_diabetes"
-        android:name="com.devahmed.demo.onlinepharmacy.Screens.AddProducts.AddProductFragment"
-        android:label="@string/menu_tools"
-        tools:layout="@layout/fragment_add_product" />
-
-
+        android:id="@+id/navigation_notifications"
+        android:name="com.devahmed.demo.onlinepharmacy.ui.notifications.NotificationsFragment"
+        android:label="@string/title_notifications"
+        tools:layout="@layout/fragment_notifications" />
 </navigation>

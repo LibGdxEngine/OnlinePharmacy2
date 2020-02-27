@@ -31,8 +31,8 @@ public class AddProductUseCase extends BaseObservableMvcView<AddProductUseCase.L
         this.context = context;
     }
 
-    public void addNewProduct(final String name  , final String price , Uri pickedImage
-            , final boolean isPromotion , final boolean isBestSeller , final boolean isOffer){
+    public void addNewProduct(final String name  , final String price , Uri pickedImage , final String subCategory
+            ,final boolean isOffer){
 
             if(!isValid(name)){
                 notifyInputError("Product name is not valid");
@@ -56,7 +56,7 @@ public class AddProductUseCase extends BaseObservableMvcView<AddProductUseCase.L
                 return;
             }
 
-
+        System.out.println("Hello");
             StorageReference storageReference = FirebaseStorage.getInstance().getReference().child(FIRESTORAGE_PATH);
             final StorageReference imageFilePath = storageReference.child(pickedImage.getLastPathSegment());
             imageFilePath.putFile(pickedImage).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
@@ -66,11 +66,8 @@ public class AddProductUseCase extends BaseObservableMvcView<AddProductUseCase.L
                         @Override
                         public void onSuccess(Uri uri) {
                             String imageDownloadLink = uri.toString();
-                            Product product = new Product(name , Integer.parseInt(price) , imageDownloadLink , "wellness");
+                            Product product = new Product(name , Integer.parseInt(price) , imageDownloadLink , subCategory);
                             //add post to firebase database
-                            product.setInOffer(isOffer);
-                            product.setPromotioned(isPromotion);
-                            product.setBestSeller(isBestSeller);
                             addPostToFirebase(product);
                         }
                     }).addOnFailureListener(new OnFailureListener() {

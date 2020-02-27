@@ -1,25 +1,12 @@
 package com.devahmed.demo.onlinepharmacy;
 
-import android.content.Intent;
-import android.net.Uri;
 import android.os.Bundle;
 
-import com.devahmed.demo.onlinepharmacy.Screens.Home.HomeMvcImp;
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
-import com.google.android.material.snackbar.Snackbar;
-
 import android.view.MenuItem;
-import android.view.View;
 
 import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.core.view.GravityCompat;
-import androidx.navigation.NavArgument;
 import androidx.navigation.NavController;
-import androidx.navigation.NavDestination;
-import androidx.navigation.NavGraph;
-import androidx.navigation.NavInflater;
-import androidx.navigation.NavType;
 import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
@@ -32,9 +19,6 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
 import android.view.Menu;
-import android.widget.Toast;
-
-import java.util.Map;
 
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
@@ -59,8 +43,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         // Passing each menu ID as a set of Ids because each
         // menu should be considered as top level destinations.
         mAppBarConfiguration = new AppBarConfiguration.Builder(R.id.nav_wellness ,
-                R.id.nav_home, R.id.nav_beauty,
-                R.id.nav_diabetes, R.id.nav_personal_care, R.id.nav_mother_and_baby)
+                R.id.nav_home, R.id.nav_products,
+                R.id.nav_add_item, R.id.nav_personal_care, R.id.nav_mother_and_baby)
                 .setDrawerLayout(drawer)
                 .build();
         
@@ -97,11 +81,15 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         Bundle bundle = new Bundle();
 //         Handle navigation view item clicks here.
         switch (menuItem.getItemId()) {
-
-            case R.id.nav_beauty: {
+            case R.id.nav_products: {
                 //do somthing
-                bundle.putString("category" , "beauty");
-                navController.navigate(R.id.nav_beauty , bundle );
+                bundle.putString("category" , "Beauty");
+                navController.navigate(R.id.nav_products, bundle );
+                break;
+            }
+            case R.id.nav_add_item: {
+                bundle.putString("category" , "Diabetes");
+                navController.navigate(R.id.nav_products, bundle );
                 break;
             }
             case R.id.nav_home:{
@@ -121,13 +109,11 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             case R.id.nav_home:
                 //show exite confirmation message
                 break;
-            case R.id.nav_beauty:
+            case R.id.nav_products:
                 navController.navigateUp();
                 break;
             default:
                 super.onBackPressed();
-
         }
-
     }
 }

@@ -9,6 +9,7 @@ import androidx.annotation.Nullable;
 import com.devahmed.demo.onlinepharmacy.Screens.AddProducts.AddProductViewMvcImp;
 import com.devahmed.demo.onlinepharmacy.Screens.Home.HomeMvcImp;
 import com.devahmed.demo.onlinepharmacy.Screens.ProductsShow.ProductsShowMvcImp;
+import com.devahmed.demo.onlinepharmacy.Screens.SubCategories.SubCategoryMvcImp;
 
 
 public class MvcViewFactory {
@@ -29,6 +30,10 @@ public class MvcViewFactory {
 
     public ProductsShowMvcImp getShowProductsImp(@Nullable ViewGroup parent){
         return new ProductsShowMvcImp(inflater , parent);
+    }
+
+    public SubCategoryMvcImp getSubCategoryMvcImp(@Nullable ViewGroup parent){
+        return new SubCategoryMvcImp(inflater , parent);
     }
 
 }
