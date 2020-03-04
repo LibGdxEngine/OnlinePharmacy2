@@ -18,6 +18,9 @@ import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
 
+import java.util.HashMap;
+import java.util.Map;
+
 public class AddCategoryUseCase extends BaseObservableMvcView<AddCategoryUseCase.Listener> {
 
     public interface Listener{
@@ -48,8 +51,6 @@ public class AddCategoryUseCase extends BaseObservableMvcView<AddCategoryUseCase
             return;
         }
 
-
-
         StorageReference storageReference = FirebaseStorage.getInstance().getReference().child(FIRESTORAGE_PATH);
         final StorageReference imageFilePath = storageReference.child(pickedImage.getLastPathSegment());
         imageFilePath.putFile(pickedImage).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
@@ -62,6 +63,7 @@ public class AddCategoryUseCase extends BaseObservableMvcView<AddCategoryUseCase
                         Category product = new Category(name , imageDownloadLink );
                         //add post to firebase database
                         addPostToFirebase(product);
+                        notifySuccess();
                     }
                 }).addOnFailureListener(new OnFailureListener() {
                     @SuppressLint("RestrictedApi")
@@ -80,6 +82,57 @@ public class AddCategoryUseCase extends BaseObservableMvcView<AddCategoryUseCase
         });
     }
 
+    public void updateCategory(final Category updatedCategory , Uri pickedImage){
+        if(!isValid(updatedCategory.getTitle())){
+            notifyInputError("Product name is not valid");
+            return;
+        }
+        if(pickedImage == null){
+            notifyInputError("You have to pick image first");
+            System.out.println("Here");
+            return;
+        }
+
+        StorageReference storageReference = FirebaseStorage.getInstance().getReference().child(FIRESTORAGE_PATH);
+        final StorageReference imageFilePath = storageReference.child(pickedImage.getLastPathSegment());
+        imageFilePath.putFile(pickedImage).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
+            @Override
+            public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+                imageFilePath.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
+                    @Override
+                    public void onSuccess(Uri uri) {
+                        String imageDownloadLink = uri.toString();
+                        Category category = new Category(updatedCategory.getTitle() , imageDownloadLink );
+                        category.setId(updatedCategory.getId());
+                        //add post to firebase database
+                        updateExistingCategory(category);
+                        notifySuccess();
+                    }
+                }).addOnFailureListener(new OnFailureListener() {
+                    @SuppressLint("RestrictedApi")
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+                        //some thing goes wrong while uploading post
+                        notifyFailure();
+                    }
+                });
+            }
+        }).addOnFailureListener(new OnFailureListener() {
+            @Override
+            public void onFailure(@NonNull Exception e) {
+                notifyFailure();
+            }
+        });
+    }
+
+    public void updateExistingCategory(Category category){
+        FirebaseDatabase database = FirebaseDatabase.getInstance();
+        DatabaseReference reference = database.getReference(FIREBASE_PATH);
+        Map<String, Object> postValues = category.toMap();
+        Map<String, Object> childUpdates = new HashMap<>();
+        childUpdates.put(category.getId(), postValues);
+        reference.updateChildren(childUpdates);
+    }
 
     private void addPostToFirebase(Category product) {
         FirebaseDatabase database = FirebaseDatabase.getInstance();

@@ -47,7 +47,7 @@ public class OffersListItemViewMvcImp extends BaseObservableMvcView<OffersListIt
     public void bindData(SubCategory product) {
         this.product = product;
         System.out.println("the image is " + product.getImage());
-        Glide.with(getContext()).load(product.getImage()).placeholder(R.drawable.ic_launcher_background).into(mImage);
+        Glide.with(getContext()).load(product.getImage()).placeholder(R.drawable.images_placeholder).into(mImage);
         mTitle.setText("" + product.getTitle());
     }
 

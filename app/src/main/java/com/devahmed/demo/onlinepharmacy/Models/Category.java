@@ -1,6 +1,10 @@
 package com.devahmed.demo.onlinepharmacy.Models;
 
+import com.google.firebase.database.Exclude;
+
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class Category {
     String  id;
@@ -40,4 +44,12 @@ public class Category {
         this.image = image;
     }
 
+    @Exclude
+    public Map<String, Object> toMap() {
+        HashMap<String, Object> result = new HashMap<>();
+        result.put("id", id);
+        result.put("title", title);
+        result.put("image", image);
+        return result;
+    }
 }

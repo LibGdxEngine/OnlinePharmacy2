@@ -42,9 +42,9 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         navigationView.setNavigationItemSelectedListener(this);
         // Passing each menu ID as a set of Ids because each
         // menu should be considered as top level destinations.
-        mAppBarConfiguration = new AppBarConfiguration.Builder(R.id.nav_wellness ,
+        mAppBarConfiguration = new AppBarConfiguration.Builder(R.id.nav_bills ,
                 R.id.nav_home, R.id.nav_products,
-                R.id.nav_add_item, R.id.nav_personal_care, R.id.nav_mother_and_baby)
+                R.id.nav_add_item, R.id.nav_personal_care, R.id.contactUs)
                 .setDrawerLayout(drawer)
                 .build();
         
@@ -65,6 +65,13 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
+        int id = item.getItemId();
+        int currentDestination = navController.getCurrentDestination().getId();
+        System.out.println("current id is "+ currentDestination + " - other is " + R.id.action_cart);
+        //if we are not already in cart => navigate to cart
+        if(id == R.id.action_cart && currentDestination != R.id.action_cart){
+            navController.navigate(R.id.cartFragment);
+        }
         return super.onOptionsItemSelected(item);
     }
 
@@ -81,19 +88,20 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         Bundle bundle = new Bundle();
 //         Handle navigation view item clicks here.
         switch (menuItem.getItemId()) {
-            case R.id.nav_products: {
-                //do somthing
-                bundle.putString("category" , "Beauty");
-                navController.navigate(R.id.nav_products, bundle );
+            case R.id.nav_home: {
+                navController.navigate(R.id.nav_home);
                 break;
             }
-            case R.id.nav_add_item: {
-                bundle.putString("category" , "Diabetes");
-                navController.navigate(R.id.nav_products, bundle );
+            case R.id.nav_search: {
+                navController.navigate(R.id.searchFragment);
                 break;
             }
-            case R.id.nav_home:{
-                navController.navigateUp();
+            case R.id.adminDashboard:{
+                navController.navigate(R.id.adminFragment);
+                break;
+            }
+            case R.id.nav_cart:{
+                navController.navigate(R.id.cartFragment);
                 break;
             }
         }

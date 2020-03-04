@@ -22,14 +22,14 @@ public class ProducstShowFragment extends BaseFragment
 
     private ProductsShowMvcImp mvcImp;
     private FetchProductsUseCase fetchProductsUseCase;
-    String category;
+    String subCategory;
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
 
         mvcImp = getCompositionRoot().getMvcFactory().getShowProductsImp(null);
-        category = getArguments().getString("category");
+        subCategory = getArguments().getString("subCategory");
         fetchProductsUseCase = new FetchProductsUseCase(getCompositionRoot().ConnectToFirebase());
-        fetchProductsUseCase.getProductsOfCategory(category);
+        fetchProductsUseCase.getProductsOfCategory(subCategory);
 
         return mvcImp.getRootView();
     }
@@ -48,13 +48,36 @@ public class ProducstShowFragment extends BaseFragment
     public void onAddNewProductBtnClicked() {
         Bundle bundle = new Bundle();
         bundle.putString("FN" , "ADD_PRODUCT");
-        bundle.putString("category" , category);
+        bundle.putString("subCategory" , subCategory);
         Navigator.instance(requireActivity()).navigate(R.id.nav_add_item, bundle);
+    }
+
+    @Override
+    public void onProductLongClicked(Product product) {
+        String[] options = {"Edit", "Delete"};
+        mvcImp.showProductsOptionsDialog("Choose Option" , options , product);
+    }
+
+    @Override
+    public void onChooseProductEdit(Product product) {
+        Bundle bundle = new Bundle();
+        bundle.putString("FN" , "EDIT_PRODUCT");
+        bundle.putString("productId" , product.getId());
+        bundle.putString("productImage" , product.getImage());
+        bundle.putString("productTitle" , product.getTitle());
+        bundle.putInt("productPrice" , product.getPrice());
+        Navigator.instance(requireActivity()).navigate(R.id.nav_add_item, bundle);
+    }
+
+    @Override
+    public void onChooseProductDelete(Product product) {
+        fetchProductsUseCase.deleteCategory(product.getId());
     }
 
     @Override
     public void onProductsDataChange(List<Product> products) {
         mvcImp.bindProductsDataData(products);
+        mvcImp.hideProgressbar();
     }
 
     @Override

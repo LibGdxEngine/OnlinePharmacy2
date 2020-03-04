@@ -3,10 +3,9 @@ package com.devahmed.demo.onlinepharmacy.Screens.SubCategories.UseCase;
 import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.net.Uri;
-
 import androidx.annotation.NonNull;
-
 import com.devahmed.demo.onlinepharmacy.Common.MVC.BaseObservableMvcView;
+import com.devahmed.demo.onlinepharmacy.Models.Category;
 import com.devahmed.demo.onlinepharmacy.Models.Product;
 import com.devahmed.demo.onlinepharmacy.Models.SubCategory;
 import com.devahmed.demo.onlinepharmacy.Screens.AddProducts.AddProductUseCase.AddProductUseCase;
@@ -17,6 +16,9 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
+
+import java.util.HashMap;
+import java.util.Map;
 
 public class AddSubCategoryUseCase extends BaseObservableMvcView<AddSubCategoryUseCase.Listener> {
     public interface Listener {
@@ -54,10 +56,11 @@ public class AddSubCategoryUseCase extends BaseObservableMvcView<AddSubCategoryU
                     @Override
                     public void onSuccess(Uri uri) {
                         String imageDownloadLink = uri.toString();
-                        SubCategory product = new SubCategory(name , imageDownloadLink );
+                        SubCategory subCategory = new SubCategory(name , imageDownloadLink );
                         //add post to firebase database
-                        product.setCategory("" + category);
-                        addPostToFirebase(product);
+                        subCategory.setCategory(category);
+                        subCategory.setInOffer(isOffer);
+                        addPostToFirebase(subCategory);
                     }
                 }).addOnFailureListener(new OnFailureListener() {
                     @SuppressLint("RestrictedApi")
@@ -75,6 +78,51 @@ public class AddSubCategoryUseCase extends BaseObservableMvcView<AddSubCategoryU
             }
         });
     }
+    public void updateSubCategory(final SubCategory updatedSubCategory, Uri pickedImage){
+        if(!isValid(updatedSubCategory.getTitle())){
+            notifyInputError("Product name is not valid");
+            return;
+        }
+        if(pickedImage == null){
+            notifyInputError("You have to pick image first");
+            return;
+        }
+
+
+        StorageReference storageReference = FirebaseStorage.getInstance().getReference().child(FIRESTORAGE_PATH);
+        final StorageReference imageFilePath = storageReference.child(pickedImage.getLastPathSegment());
+        imageFilePath.putFile(pickedImage).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
+            @Override
+            public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+                imageFilePath.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
+                    @Override
+                    public void onSuccess(Uri uri) {
+                        String imageDownloadLink = uri.toString();
+                        SubCategory subCategory = new SubCategory( updatedSubCategory.getTitle(), imageDownloadLink );
+                        //add post to firebase database
+                        subCategory.setId(updatedSubCategory.getId());
+                        subCategory.setCategory(updatedSubCategory.getCategory());
+                        subCategory.setInOffer(updatedSubCategory.isInOffer());
+                        updateExistingSubCategory(subCategory);
+                        notifySuccess();
+                    }
+                }).addOnFailureListener(new OnFailureListener() {
+                    @SuppressLint("RestrictedApi")
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+                        //some thing goes wrong while uploading post
+                        notifyFailure();
+                    }
+                });
+            }
+        }).addOnFailureListener(new OnFailureListener() {
+            @Override
+            public void onFailure(@NonNull Exception e) {
+                notifyFailure();
+            }
+        });
+    }
+
 
 
     private void addPostToFirebase(SubCategory product) {
@@ -95,6 +143,14 @@ public class AddSubCategoryUseCase extends BaseObservableMvcView<AddSubCategoryU
                 notifyFailure();
             }
         });
+    }
+    public void updateExistingSubCategory(SubCategory subCategory){
+        FirebaseDatabase database = FirebaseDatabase.getInstance();
+        DatabaseReference reference = database.getReference(FIREBASE_PATH);
+        Map<String, Object> postValues = subCategory.toMap();
+        Map<String, Object> childUpdates = new HashMap<>();
+        childUpdates.put(subCategory.getId(), postValues);
+        reference.updateChildren(childUpdates);
     }
 
     boolean isValid(String text){

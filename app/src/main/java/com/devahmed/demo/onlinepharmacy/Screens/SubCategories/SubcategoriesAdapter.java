@@ -6,6 +6,7 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import androidx.cardview.widget.CardView;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -34,10 +35,10 @@ public class SubcategoriesAdapter extends RecyclerView.Adapter<SubcategoriesAdap
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
         SubCategory model = SubCategorysList.get(position);
-        holder.textView.setText("" + model.getTitle() + " , " + model.getCategory());
+        holder.textView.setText("" + model.getTitle());
         Glide.with(holder.imageView.getContext())
                 .load(model.getImage())
-                .placeholder(R.drawable.ic_launcher_background)
+                .placeholder(R.drawable.images_placeholder)
                 .into(holder.imageView);
     }
 
@@ -54,7 +55,7 @@ public class SubcategoriesAdapter extends RecyclerView.Adapter<SubcategoriesAdap
     public class ViewHolder extends RecyclerView.ViewHolder {
         ImageView  imageView;
         TextView textView;
-        ConstraintLayout container;
+        CardView container;
         public ViewHolder(View view) {
             super(view);
             textView = view.findViewById(R.id.subcategoryTitle);

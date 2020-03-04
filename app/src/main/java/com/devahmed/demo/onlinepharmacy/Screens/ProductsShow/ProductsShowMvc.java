@@ -8,11 +8,19 @@ public interface ProductsShowMvc {
 
     public interface Listener{
 
-        public void onProductImageClicked();
-        public void onAddToCartBtnClicked();
-        public void onAddNewProductBtnClicked();
-    }
+        void onProductImageClicked();
+        void onAddToCartBtnClicked();
+        void onAddNewProductBtnClicked();
+        void onProductLongClicked(Product product);
 
+        void onChooseProductEdit(Product product);
+
+        void onChooseProductDelete(Product product);
+    }
+    void showProductsOptionsDialog(String title , String [] options , final Product product);
     public void bindProductsDataData(List<Product> productList);
+
+    void showProgressbar();
+    void hideProgressbar();
 
 }

@@ -4,39 +4,48 @@
     tools:showIn="navigation_view">
 
     <group android:checkableBehavior="single">
-        <item android:title="Online Pharmacy" >
+        <item android:title="@string/app_name" >
             <menu >
                 <item
                     android:id="@+id/nav_home"
-                    android:icon="@drawable/ic_menu_camera"
-                    android:title="@string/menu_home" />
+                    android:icon="@drawable/ic_discover_basket_orange_24dp"
+                    android:title="@string/Store" />
                 <item
-                    android:id="@+id/nav_products"
-                    android:icon="@drawable/ic_menu_gallery"
-                    android:title="@string/menu_gallery" />
+                    android:id="@+id/nav_search"
+                    android:icon="@drawable/ic_search_oragne_24dp"
+                    android:title="@string/Search" />
                 <item
-                    android:id="@+id/nav_wellness"
-                    android:icon="@drawable/ic_menu_slideshow"
-                    android:title="@string/menu_slideshow" />
+                    android:id="@+id/nav_bills"
+                    android:icon="@drawable/ic_bills_turned_in_black_24dp"
+                    android:title="@string/Bills" />
                 <item
-                    android:id="@+id/nav_add_item"
-                    android:icon="@drawable/ic_menu_manage"
-                    android:title="@string/menu_tools" />
+                    android:id="@+id/nav_cart"
+                    android:icon="@drawable/ic_shopping_cart_black_24dp"
+                    android:title="@string/cart" />
                 <item
                     android:id="@+id/nav_personal_care"
-                    android:icon="@drawable/ic_menu_share"
-                    android:title="@string/menu_share" />
+                    android:icon="@drawable/ic_person_black_24dp"
+                    android:title="@string/account" />
+                <item
+                    android:id="@+id/setting"
+                    android:icon="@drawable/ic_settings_black_24dp"
+                    android:title="@string/settings" />
+                <item
+                    android:id="@+id/contactUs"
+                    android:icon="@drawable/ic_contact_phone_black_24dp"
+                    android:title="@string/contact_us" />
+
             </menu>
         </item>
 
     </group>
 
-    <item android:title="ABOUT US">
+    <item android:title="ADMIN">
         <menu>
             <item
-                android:id="@+id/nav_mother_and_baby"
-                android:icon="@drawable/ic_menu_send"
-                android:title="@string/menu_send" />
+                android:id="@+id/adminDashboard"
+                android:icon="@drawable/ic_create_black_24dp"
+                android:title="@string/admin_dashboard" />
         </menu>
     </item>
 

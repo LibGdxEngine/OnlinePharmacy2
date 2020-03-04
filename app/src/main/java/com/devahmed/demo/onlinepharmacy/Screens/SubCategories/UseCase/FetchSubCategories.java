@@ -19,7 +19,7 @@ public class FetchSubCategories extends BaseObservableMvcView<FetchSubCategories
     private FirebaseDatabase database;
     private DatabaseReference databaseReference;
     private List<SubCategory>  subCategoryList;
-
+    private final String FIREBASE_PATH = "Sub-Categories";
     public interface Listener{
         void onSubCategorySuccess(List<SubCategory> subCategories);
         void onSubCategoryCanceled(DatabaseError error);
@@ -50,7 +50,12 @@ public class FetchSubCategories extends BaseObservableMvcView<FetchSubCategories
         });
     }
 
-
+    public void deleteCategory(String SubcategoryID){
+        FirebaseDatabase database = FirebaseDatabase.getInstance();
+        DatabaseReference reference = database.getReference(FIREBASE_PATH).push();
+        reference = database.getReference(FIREBASE_PATH);
+        reference.child(SubcategoryID).removeValue();
+    }
 
     private void notifyCategoryChange(List<SubCategory> subCategoryList) {
         for(Listener listener : getmListeners()){

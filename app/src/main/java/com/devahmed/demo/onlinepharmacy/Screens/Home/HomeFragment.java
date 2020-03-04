@@ -13,21 +13,21 @@ import com.devahmed.demo.onlinepharmacy.Models.Category;
 import com.devahmed.demo.onlinepharmacy.Common.dependencyInjection.BaseFragment;
 import com.devahmed.demo.onlinepharmacy.Models.SubCategory;
 import com.devahmed.demo.onlinepharmacy.R;
-import com.devahmed.demo.onlinepharmacy.Screens.Home.UseCases.FetchProductsUseCase;
+import com.devahmed.demo.onlinepharmacy.Screens.Home.UseCases.FetchCategoryUseCase;
 import com.google.firebase.database.DatabaseError;
 
 import java.util.List;
 
-public class HomeFragment extends BaseFragment implements FetchProductsUseCase.Listener  , HomeMvc.Listener{
+public class HomeFragment extends BaseFragment implements FetchCategoryUseCase.Listener  , HomeMvc.Listener{
 
 
     private HomeMvcImp mvcImp;
-    private FetchProductsUseCase productsUseCase;
+    private FetchCategoryUseCase productsUseCase;
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
         mvcImp = getCompositionRoot().getMvcFactory().getHomeMvc(container);
 
-        productsUseCase = new FetchProductsUseCase(getCompositionRoot().ConnectToFirebase());
+        productsUseCase = new FetchCategoryUseCase(getCompositionRoot().ConnectToFirebase());
         productsUseCase.getOffers();
         productsUseCase.getCategories();
 
@@ -38,6 +38,7 @@ public class HomeFragment extends BaseFragment implements FetchProductsUseCase.L
     @Override
     public void onOfferProductChange(List<SubCategory> productList) {
         mvcImp.bindSliderData(productList);
+        mvcImp.hideProgressbar();
     }
 
     @Override
@@ -69,12 +70,12 @@ public class HomeFragment extends BaseFragment implements FetchProductsUseCase.L
     }
 
     @Override
-    public void onCategoryChange(List<Category> categoryList) {
+    public void onProductsChanged(List<Category> categoryList) {
         mvcImp.bindCategoriesDataData(categoryList);
     }
 
     @Override
-    public void onCategoryCancelled(DatabaseError databaseError) {
+    public void onProductsCancelled(DatabaseError databaseError) {
         Toast.makeText(requireActivity(), "Categoryies Cancelled in Home Fragment " + databaseError, Toast.LENGTH_SHORT).show();
     }
 
@@ -94,12 +95,17 @@ public class HomeFragment extends BaseFragment implements FetchProductsUseCase.L
 
     @Override
     public void onChooseCategoryEdit(Category category) {
-        Toast.makeText(requireActivity(), "Edit", Toast.LENGTH_SHORT).show();
+        Bundle bundle = new Bundle();
+        bundle.putString("FN" , "EDIT_CATEGORY");
+        bundle.putString("categoryId" , category.getId());
+        bundle.putString("categoryTitle" , category.getTitle());
+        bundle.putString("categoryImage" , category.getImage());
+        Navigator.instance(requireActivity()).navigate(R.id.nav_add_item,  bundle);
     }
 
     @Override
     public void onChooseCategoryDelete(Category category) {
-        Toast.makeText(requireActivity(), "Delete", Toast.LENGTH_SHORT).show();
+        productsUseCase.deleteCategory(category.getId());
     }
 
     @Override
@@ -107,6 +113,11 @@ public class HomeFragment extends BaseFragment implements FetchProductsUseCase.L
         Bundle bundle = new Bundle();
         bundle.putString("FN" , "ADD_CATEGORY");
         Navigator.instance(requireActivity()).navigate(R.id.nav_add_item,  bundle);
+    }
+
+    @Override
+    public void onSearchbarClicked() {
+        Navigator.instance(requireActivity()).navigate(R.id.searchFragment);
     }
 
     @Override

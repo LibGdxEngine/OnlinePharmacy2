@@ -7,6 +7,7 @@ import android.net.Uri;
 import androidx.annotation.NonNull;
 
 import com.devahmed.demo.onlinepharmacy.Common.MVC.BaseObservableMvcView;
+import com.devahmed.demo.onlinepharmacy.Models.Category;
 import com.devahmed.demo.onlinepharmacy.Models.Product;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -15,6 +16,9 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
+
+import java.util.HashMap;
+import java.util.Map;
 
 public class AddProductUseCase extends BaseObservableMvcView<AddProductUseCase.Listener> {
     private final Activity context;
@@ -31,8 +35,7 @@ public class AddProductUseCase extends BaseObservableMvcView<AddProductUseCase.L
         this.context = context;
     }
 
-    public void addNewProduct(final String name  , final String price , Uri pickedImage , final String subCategory
-            ,final boolean isOffer){
+    public void addNewProduct(final String name  , final String price , Uri pickedImage , final String subCategory){
 
             if(!isValid(name)){
                 notifyInputError("Product name is not valid");
@@ -56,7 +59,6 @@ public class AddProductUseCase extends BaseObservableMvcView<AddProductUseCase.L
                 return;
             }
 
-        System.out.println("Hello");
             StorageReference storageReference = FirebaseStorage.getInstance().getReference().child(FIRESTORAGE_PATH);
             final StorageReference imageFilePath = storageReference.child(pickedImage.getLastPathSegment());
             imageFilePath.putFile(pickedImage).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
@@ -115,6 +117,15 @@ public class AddProductUseCase extends BaseObservableMvcView<AddProductUseCase.L
             }
         }
         return false;
+    }
+
+    public void updateExistingProduct(Product product){
+        FirebaseDatabase database = FirebaseDatabase.getInstance();
+        DatabaseReference reference = database.getReference(FIREBASE_PATH);
+        Map<String, Object> postValues = product.toMap();
+        Map<String, Object> childUpdates = new HashMap<>();
+        childUpdates.put(product.getId(), postValues);
+        reference.updateChildren(childUpdates);
     }
 
     private void notifyFailure() {

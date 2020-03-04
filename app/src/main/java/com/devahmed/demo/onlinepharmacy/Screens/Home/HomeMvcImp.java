@@ -5,6 +5,8 @@ import android.content.DialogInterface;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.EditText;
+import android.widget.ProgressBar;
 
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -34,7 +36,8 @@ public class HomeMvcImp extends BaseObservableMvcView<HomeMvc.Listener> implemen
     private CategoryAdapter categoryAdapter;
     private List<Category> categoryList;
     private FloatingActionButton addCategoryBtn;
-
+    private ProgressBar progressBar;
+    private EditText searchbarEditText;
     public HomeMvcImp(LayoutInflater inflater , ViewGroup parent) {
 
         setRootView(inflater.inflate(R.layout.fragment_home_classic , parent , false));
@@ -47,6 +50,17 @@ public class HomeMvcImp extends BaseObservableMvcView<HomeMvc.Listener> implemen
                 }
             }
         });
+        searchbarEditText = findViewById(R.id.searchbar);
+        searchbarEditText.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                for(Listener listener : getmListeners()){
+                    listener.onSearchbarClicked();
+                }
+            }
+        });
+        //ProgressBar
+        progressBar = findViewById(R.id.progressBar);
         //SliderView that shows offers
         sliderView = findViewById(R.id.sliderView);
         offersProducstList = new ArrayList<>();
@@ -59,9 +73,8 @@ public class HomeMvcImp extends BaseObservableMvcView<HomeMvc.Listener> implemen
         //Categories RecyclerView
         categoriesRecycler = findViewById(R.id.categoriesRecycler);
         categoryList = new ArrayList<>();
-        categoryList.add(new Category());
         categoryAdapter = new CategoryAdapter(categoryList);
-        categoriesRecycler.setLayoutManager(new GridLayoutManager(getContext() , 1));
+        categoriesRecycler.setLayoutManager(new GridLayoutManager(getContext() , 2));
         categoriesRecycler.setHasFixedSize(true);
         categoriesRecycler.setAdapter(categoryAdapter);
 
@@ -109,6 +122,7 @@ public class HomeMvcImp extends BaseObservableMvcView<HomeMvc.Listener> implemen
         });
         builder.show();
     }
+
     public void showOffersOptionsDialog(String title , String [] options , final SubCategory subCategory) {
         AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
         builder.setTitle(title);
@@ -146,6 +160,16 @@ public class HomeMvcImp extends BaseObservableMvcView<HomeMvc.Listener> implemen
     public void bindCategoriesDataData(List<Category> categoryList) {
         this.categoryList = categoryList;
         categoryAdapter.setList(categoryList);
+    }
+
+    @Override
+    public void showProgressbar() {
+        progressBar.setVisibility(View.VISIBLE);
+    }
+
+    @Override
+    public void hideProgressbar() {
+        progressBar.setVisibility(View.GONE);
     }
 
     @Override

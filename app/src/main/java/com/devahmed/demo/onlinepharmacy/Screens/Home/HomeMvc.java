@@ -20,11 +20,13 @@ public interface HomeMvc {
         void onChooseOfferEdit(SubCategory subCategory);
         void onChooseOfferDelete(SubCategory subCategory);
         void onAddCategoryBtnClicked();
+        void onSearchbarClicked();
     }
 
     public void bindSliderData(List<SubCategory> offersProductList);
 
     public void bindCategoriesDataData(List<Category> categoryList);
 
-
+    void showProgressbar();
+    void hideProgressbar();
 }

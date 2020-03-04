@@ -20,7 +20,7 @@ public class FetchProductsUseCase extends BaseObservableMvcView<FetchProductsUse
     private DatabaseReference databaseReference;
     private List<Product> productList;
 
-
+    private final String FIREBASE_PATH = "Products";
     public interface Listener{
         void onProductsDataChange(List<Product> products);
         void onProductsDataCancel(DatabaseError error);
@@ -29,16 +29,16 @@ public class FetchProductsUseCase extends BaseObservableMvcView<FetchProductsUse
     public FetchProductsUseCase(FirebaseDatabase database) {
         this.database = database;
     }
-    //category
+    //subCategory
     /*
-    * category has a name , image and List<SubCategory> subcategories;
+    * subCategory has a name , image and List<SubCategory> subcategories;
     * sub-Category has - name , image and List<Product>
-    * each category has some sub-categories
+    * each subCategory has some sub-categories
     * which means that
     * */
-    public void getProductsOfCategory(String category){
+    public void getProductsOfCategory(String subCategory){
         databaseReference = database.getReference("Products");
-        databaseReference.orderByChild("category").equalTo( category ).addValueEventListener(new ValueEventListener() {
+        databaseReference.orderByChild("subCategory").equalTo( subCategory ).addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 productList = new ArrayList<>();
@@ -56,7 +56,32 @@ public class FetchProductsUseCase extends BaseObservableMvcView<FetchProductsUse
             }
         });
     }
+    public void getAllProducts(){
+        databaseReference = database.getReference("Products");
+        databaseReference.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                productList = new ArrayList<>();
+                for (DataSnapshot postSnap: dataSnapshot.getChildren()) {
+                    Product model = postSnap.getValue(Product.class);
+                    productList.add(model);
+                }
+                Collections.reverse(productList);
+                notifyDataChange(productList);
+            }
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+                notifyDataCancelled(databaseError);
+            }
+        });
+    }
 
+    public void deleteCategory(String productId){
+        FirebaseDatabase database = FirebaseDatabase.getInstance();
+        DatabaseReference reference = database.getReference(FIREBASE_PATH).push();
+        reference = database.getReference(FIREBASE_PATH);
+        reference.child(productId).removeValue();
+    }
     private void notifyDataCancelled(DatabaseError databaseError) {
         for(Listener listener : getmListeners()){
             listener.onProductsDataCancel(databaseError);

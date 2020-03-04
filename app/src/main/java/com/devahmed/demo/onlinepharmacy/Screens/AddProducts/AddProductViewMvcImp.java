@@ -12,7 +12,13 @@ import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
+
+import com.bumptech.glide.Glide;
 import com.devahmed.demo.onlinepharmacy.Common.MVC.BaseObservableMvcView;
+import com.devahmed.demo.onlinepharmacy.Models.Category;
+import com.devahmed.demo.onlinepharmacy.Models.Product;
+import com.devahmed.demo.onlinepharmacy.Models.SubCategory;
 import com.devahmed.demo.onlinepharmacy.R;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
@@ -122,17 +128,29 @@ public class AddProductViewMvcImp extends BaseObservableMvcView<AddProductMvc.Li
         addpost_fullviewImageView.setVisibility(View.GONE);
     }
 
-    public void activateCategoryMode(){
+    public void activateCategoryMode(Category category){
         priceTextView.setVisibility(View.GONE);
         _productPrice.setVisibility(View.GONE);
         checkbox_offer.setVisibility(View.GONE);
+        if(category != null){
+            _productName.setText(category.getTitle());
+        }
     }
-    public void activateSubCategoryMode(){
+    public void activateSubCategoryMode(SubCategory subCategory){
         priceTextView.setVisibility(View.GONE);
         _productPrice.setVisibility(View.GONE);
-        checkbox_offer.setVisibility(View.GONE);
+        if(subCategory != null){
+            checkbox_offer.setChecked(subCategory.isInOffer());
+            _productName.setText(subCategory.getTitle());
+        }
     }
-    public void activateProductMode(){
+
+    public void activateProductMode(Product product){
         //DO NOTHING
+        checkbox_offer.setVisibility(View.GONE);
+        if(product != null ){
+            _productPrice.setText(product.getPrice());
+            _productName.setText(product.getTitle());
+        }
     }
 }
