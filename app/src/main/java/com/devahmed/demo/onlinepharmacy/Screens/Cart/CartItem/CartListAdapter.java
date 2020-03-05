@@ -72,35 +72,44 @@ public class CartListAdapter extends RecyclerView.Adapter<CartListAdapter.ViewHo
 
     @Override
     public void onIncreaseBtnClicked(Product product) {
+        mListener.onIncreaseBtnClicked(product);
         //if products is already exist in the cart => just increase its counter
         int index = cartProductIdList.indexOf(product.getId());
-        System.out.println("index is " + index);
         int newKey = Integer.parseInt(cartProductCountList.get(index)) + 1;
-        System.out.println("newKey key is " + newKey);
         productCountCartManagaer.replaceKey(index , "" + newKey);
         //update the lists of id's with the new data
         cartProductIdList = prodctsIDCartManager.getStoredValues();
         cartProductCountList = productCountCartManagaer.getStoredValues();
-        mListener.onIncreaseBtnClicked(product);
+
+
     }
 
     @Override
     public void onDecreaseBtnCLicked(Product product) {
+        mListener.onDecreaseBtnCLicked(product);
         //if products is already exist in the cart => just increase its counter
         int index = cartProductIdList.indexOf(product.getId());
-        System.out.println("index is " + index);
         int newKey = Integer.parseInt(cartProductCountList.get(index)) - 1;
-        System.out.println("newKey key is " + newKey);
         productCountCartManagaer.replaceKey(index , "" + newKey);
         //update the lists of id's with the new data
         cartProductIdList = prodctsIDCartManager.getStoredValues();
         cartProductCountList = productCountCartManagaer.getStoredValues();
-        mListener.onDecreaseBtnCLicked(product);
+        if(newKey == 0){
+            //remove it from recyclerView also
+            removeAt(productList.indexOf(product) , product);
+        }
     }
 
     @Override
     public void onProductImageClicked(Product product) {
         mListener.onProductImageClicked(product);
+    }
+
+
+    public void removeAt(int position , Product product) {
+        //delete from recycler View
+        productList.remove(product);
+        notifyDataSetChanged();
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {

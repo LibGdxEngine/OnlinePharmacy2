@@ -15,6 +15,7 @@ import com.devahmed.demo.onlinepharmacy.Models.Product;
 import com.devahmed.demo.onlinepharmacy.Models.SubCategory;
 import com.devahmed.demo.onlinepharmacy.Screens.Home.UseCases.FetchCategoryUseCase;
 import com.devahmed.demo.onlinepharmacy.Screens.ProductsShow.UseCases.FetchProductsUseCase;
+import com.devahmed.demo.onlinepharmacy.Utils.UtilsDialog;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.FirebaseDatabase;
 
@@ -42,12 +43,39 @@ public class SearchFragment extends Fragment implements SearchMvc.Listener, Fetc
 
     @Override
     public void onQueryTextSubmit(String query) {
+        System.out.println("" + query);
         mvcImp.applyQuery(query);
     }
 
     @Override
     public void onQueryTextChange(String newText) {
         mvcImp.applyQuery(newText);
+    }
+
+    @Override
+    public void onImageClicked(Product product) {
+        UtilsDialog dialog = new UtilsDialog(requireActivity());
+        dialog.showFullImageDialog(product.getImage());
+    }
+
+    @Override
+    public void onAddToCartBtnClicked(Product product) {
+
+    }
+
+    @Override
+    public void onImageLongClicked(Product product) {
+
+    }
+
+    @Override
+    public void onIncreaseItemsBtnClicked() {
+
+    }
+
+    @Override
+    public void onDecreaseItemsBtnClicked() {
+
     }
     //==============================================================================================
 

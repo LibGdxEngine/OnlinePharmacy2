@@ -62,7 +62,6 @@ public class FetchCartDataUseCase extends BaseObservableMvcView<FetchCartDataUse
                         }
                     }
                 }
-                Collections.reverse(productList);
                 notifyDataChange(productList , productsCountList);
             }
             @Override

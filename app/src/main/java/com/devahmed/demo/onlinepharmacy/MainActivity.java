@@ -67,7 +67,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     public boolean onOptionsItemSelected(MenuItem item) {
         int id = item.getItemId();
         int currentDestination = navController.getCurrentDestination().getId();
-        System.out.println("current id is "+ currentDestination + " - other is " + R.id.action_cart);
         //if we are not already in cart => navigate to cart
         if(id == R.id.action_cart && currentDestination != R.id.action_cart){
             navController.navigate(R.id.cartFragment);

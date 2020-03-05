@@ -20,9 +20,8 @@ public class ShowProductsAdapter extends RecyclerView.Adapter<ShowProductsAdapte
     @Override
     public void onImageClicked(Product product) {
         mListener.onImageClicked(product);
-        prodctsIDCartManager.deleteAllKeys();
-        productCountCartManagaer.deleteAllKeys();
     }
+
     @Override
     public void onImageLongClicked(Product product) {
         mListener.onImageLongClicked(product);
@@ -32,9 +31,7 @@ public class ShowProductsAdapter extends RecyclerView.Adapter<ShowProductsAdapte
     public void onIncreaseItemsBtnClicked(Product product) {
         //if products is already exist in the cart => just increase its counter
         int index = cartProductIdList.indexOf(product.getId());
-        System.out.println("index is " + index);
         int newKey = Integer.parseInt(cartProductCountList.get(index)) + 1;
-        System.out.println("newKey key is " + newKey);
         productCountCartManagaer.replaceKey(index , "" + newKey);
         //update the lists of id's with the new data
         cartProductIdList = prodctsIDCartManager.getStoredValues();
@@ -44,11 +41,9 @@ public class ShowProductsAdapter extends RecyclerView.Adapter<ShowProductsAdapte
 
     @Override
     public void onDecreaseItemsBtnClicked(Product product) {
-        //if products is already exist in the cart => just increase its counter
+        //decrease the counter in CartManager
         int index = cartProductIdList.indexOf(product.getId());
-        System.out.println("index is " + index);
         int newKey = Integer.parseInt(cartProductCountList.get(index)) - 1;
-        System.out.println("newKey key is " + newKey);
         productCountCartManagaer.replaceKey(index , "" + newKey);
         //update the lists of id's with the new data
         cartProductIdList = prodctsIDCartManager.getStoredValues();

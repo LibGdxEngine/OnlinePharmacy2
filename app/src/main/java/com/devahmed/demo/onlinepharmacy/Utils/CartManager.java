@@ -64,7 +64,6 @@ public class CartManager {
         SharedPreferences sharedCarterences = context.getSharedPreferences(_CartName, Context.MODE_PRIVATE);
         //get posts that already stored
         String posts = sharedCarterences.getString(_CartName , "");
-        System.out.println(_CartName + " => Keys = " + posts);
         return posts;
     }
 
@@ -103,30 +102,35 @@ public class CartManager {
 
         if(ok){
             catrProductsList = tempArray;
-            System.out.println("key deleted successfully");
+            System.out.println( keyToDelete + " key deleted successfully");
         }else{
             System.out.println("key not found !");
             return;
         }
         catrProductsList = getKeysAsSingleString().split(",");
     }
+
     public void deleteKey(int indexToDelete){
         indexToDelete++;
-
         boolean ok = false;
         // Create another array of size one less
         String [] tempArray = new String[catrProductsList.length - 1];
 
-        // Copy the elements from starting till index
+        // Copy the elements except the index
         // from original array to the other array
-        System.arraycopy(catrProductsList, 0, tempArray, 0, indexToDelete);
+        for (int i = 0, k = 0; i < tempArray.length; i++) {
 
-        // Copy the elements from index + 1 till end
-        // from original array to the other array
-        System.arraycopy(catrProductsList, indexToDelete + 1,
-                tempArray, indexToDelete,
-                catrProductsList.length - indexToDelete - 1);
+            // if the index is
+            // the removal element index
+            if (i == indexToDelete) {
+                ok = true;
+                continue;
+            }
 
+            // if the index is not
+            // the removal element index
+            tempArray[k++] = catrProductsList[i];
+        }
 
         SharedPreferences sharedCarterences = context.getSharedPreferences(_CartName, Context.MODE_PRIVATE);
             StringBuilder sb = new StringBuilder();
@@ -166,7 +170,6 @@ public class CartManager {
         for (int i = 0; i <postsKeysList.length ; i++) {
             if(i == index){
                 //add the new key to this specific index
-                System.out.println("index of i is " + index);
                 postsKeysList2[i] = newKey;
             }else{
                 postsKeysList2[i] = postsKeysList[i];

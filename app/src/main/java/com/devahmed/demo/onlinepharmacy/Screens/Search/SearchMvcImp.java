@@ -6,6 +6,7 @@ import android.view.ViewGroup;
 import android.widget.ProgressBar;
 
 import androidx.appcompat.widget.SearchView;
+import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.devahmed.demo.onlinepharmacy.Common.MVC.BaseObservableMvcView;
@@ -63,9 +64,14 @@ public class SearchMvcImp extends BaseObservableMvcView<SearchMvc.Listener> impl
         searchView = findViewById(R.id.searchView);
         progressBar = findViewById(R.id.progressBar);
         recyclerView = findViewById(R.id.searchRecycler);
-        adapter = new ShowProductsAdapter(tempSearchList , this , getContext());
         productList = new ArrayList<>();
         tempSearchList = new ArrayList<>();
+        adapter = new ShowProductsAdapter(tempSearchList , this , getContext());
+        recyclerView.setHasFixedSize(true);
+        recyclerView.setLayoutManager(new GridLayoutManager(getContext() , 2));
+        recyclerView.setAdapter(adapter);
+
+
     }
 
     @Override
@@ -84,6 +90,7 @@ public class SearchMvcImp extends BaseObservableMvcView<SearchMvc.Listener> impl
     public void bindData(List<Product> productList) {
         this.productList = productList;
         this.tempSearchList = productList;
+        adapter.setList(productList);
     }
 
     @Override
@@ -97,27 +104,37 @@ public class SearchMvcImp extends BaseObservableMvcView<SearchMvc.Listener> impl
     }
 
     @Override
-    public void onImageClicked(Product Product) {
-
+    public void onImageClicked(Product product) {
+        for(Listener listener : getmListeners()){
+            listener.onImageClicked(product);
+        }
     }
 
     @Override
     public void onAddToCartBtnClicked(Product product) {
-
+        for(Listener listener : getmListeners()){
+            listener.onAddToCartBtnClicked(product);
+        }
     }
 
     @Override
     public void onImageLongClicked(Product product) {
-
+        for(Listener listener : getmListeners()){
+            listener.onImageLongClicked(product);
+        }
     }
 
     @Override
     public void onIncreaseItemsBtnClicked() {
-
+        for(Listener listener : getmListeners()){
+            listener.onIncreaseItemsBtnClicked();
+        }
     }
 
     @Override
     public void onDecreaseItemsBtnClicked() {
-
+        for(Listener listener : getmListeners()){
+            listener.onDecreaseItemsBtnClicked();
+        }
     }
 }

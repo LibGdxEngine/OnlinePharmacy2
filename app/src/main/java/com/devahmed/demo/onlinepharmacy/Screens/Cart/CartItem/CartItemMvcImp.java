@@ -52,7 +52,7 @@ public class CartItemMvcImp extends BaseObservableMvcView<CartItemsMvc.Listener>
             public void onClick(View v) {
                 counter -= 1;
                 if(counter <= 0){
-                    containerLayout.setVisibility(View.GONE);
+//                    containerLayout.setVisibility(View.GONE);
                 }else{
                     noOfItemsInCartText.setText("" + counter);
                     totalItemPrice -= product.getPrice();

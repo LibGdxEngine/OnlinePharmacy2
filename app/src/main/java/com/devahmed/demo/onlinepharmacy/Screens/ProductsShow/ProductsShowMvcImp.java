@@ -98,7 +98,7 @@ public class ProductsShowMvcImp extends BaseObservableMvcView<ProductsShowMvc.Li
     @Override
     public void onImageClicked(Product Product) {
         for(Listener listener: getmListeners()){
-            listener.onProductImageClicked();
+            listener.onProductImageClicked(Product);
         }
     }
 

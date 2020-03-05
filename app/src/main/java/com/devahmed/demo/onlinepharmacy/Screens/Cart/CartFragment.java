@@ -13,13 +13,15 @@ import androidx.fragment.app.Fragment;
 import com.devahmed.demo.onlinepharmacy.Common.Navigator.Navigator;
 import com.devahmed.demo.onlinepharmacy.Models.Product;
 import com.devahmed.demo.onlinepharmacy.R;
+import com.devahmed.demo.onlinepharmacy.Screens.Cart.CartItem.CartItemsMvc;
 import com.devahmed.demo.onlinepharmacy.Screens.Cart.UseCase.FetchCartDataUseCase;
+import com.devahmed.demo.onlinepharmacy.Utils.UtilsDialog;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.FirebaseDatabase;
 
 import java.util.List;
 
-public class CartFragment extends Fragment implements CartMvc.Listener, FetchCartDataUseCase.Listener {
+public class CartFragment extends Fragment implements CartMvc.Listener, FetchCartDataUseCase.Listener{
 
     CartMvcImp mvcImp;
     FetchCartDataUseCase cartDataUseCase;
@@ -41,6 +43,12 @@ public class CartFragment extends Fragment implements CartMvc.Listener, FetchCar
     @Override
     public void onGoToShoppingBtnClicked() {
         Navigator.instance(requireActivity()).navigate(R.id.nav_home);
+    }
+
+    @Override
+    public void onCartItemImageClicked(Product product) {
+        UtilsDialog dialog = new UtilsDialog(requireActivity());
+        dialog.showFullImageDialog(product.getImage());
     }
 
     @Override

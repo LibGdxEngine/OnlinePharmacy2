@@ -8,7 +8,7 @@ public interface ProductsShowMvc {
 
     public interface Listener{
 
-        void onProductImageClicked();
+        void onProductImageClicked(Product product);
         void onAddToCartBtnClicked();
         void onAddNewProductBtnClicked();
         void onProductLongClicked(Product product);

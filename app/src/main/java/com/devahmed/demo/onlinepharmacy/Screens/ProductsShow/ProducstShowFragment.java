@@ -13,6 +13,7 @@ import com.devahmed.demo.onlinepharmacy.Common.dependencyInjection.BaseFragment;
 import com.devahmed.demo.onlinepharmacy.Models.Product;
 import com.devahmed.demo.onlinepharmacy.R;
 import com.devahmed.demo.onlinepharmacy.Screens.ProductsShow.UseCases.FetchProductsUseCase;
+import com.devahmed.demo.onlinepharmacy.Utils.UtilsDialog;
 import com.google.firebase.database.DatabaseError;
 
 import java.util.List;
@@ -35,8 +36,9 @@ public class ProducstShowFragment extends BaseFragment
     }
 
     @Override
-    public void onProductImageClicked() {
-        Toast.makeText(requireContext(), "Image clicked", Toast.LENGTH_SHORT).show();
+    public void onProductImageClicked(Product product) {
+        UtilsDialog dialog = new UtilsDialog(requireActivity());
+        dialog.showFullImageDialog(product.getImage());
     }
 
     @Override
