@@ -13,6 +13,7 @@ import android.widget.ImageView;
 
 import com.devahmed.demo.onlinepharmacy.MainActivity;
 import com.devahmed.demo.onlinepharmacy.R;
+import com.devahmed.demo.onlinepharmacy.Screens.LocationAtFirstTime.LocationAtFirstTime;
 import com.devahmed.demo.onlinepharmacy.Screens.LoginRegister.LoginActivity;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -48,7 +49,6 @@ public class SplashActivity extends AppCompatActivity {
                     //user is already connected we need to redirect him to HomePage
                     updateUI();
                 }else{
-                    FirebaseAuth.getInstance().signOut();
                     startActivity(new Intent(getBaseContext() , LoginActivity.class));
                     finish();
                 }

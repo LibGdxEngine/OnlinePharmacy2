@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Store</string>
+    <string name="app_name">Fox Mart</string>
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
     <string name="nav_header_title">Alwa7a Market</string>
@@ -10,7 +10,7 @@
     <string name="action_cart">Cart</string>
     <string name="Store">Store</string>
     <string name="Search">Search</string>
-    <string name="Bills">Bills</string>
+    <string name="Orders">Orders</string>
     <string name="cart">Cart</string>
     <string name="account">Account</string>
     <string name="settings">Settings</string>

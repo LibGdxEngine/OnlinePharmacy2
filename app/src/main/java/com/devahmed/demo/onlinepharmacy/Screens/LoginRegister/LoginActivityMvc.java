@@ -9,6 +9,7 @@ public interface LoginActivityMvc {
         void onViewPagerPageChanged(int page);
         void onResendCodeBtnClicked();
         void onSkipBtnClicked();
+        void onEnterCodeBtnClicked(String code);
     }
 
     void showProgressbar();

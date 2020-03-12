@@ -5,6 +5,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -28,7 +29,8 @@ public class LoginActivityMvcImp extends BaseObservableMvcView<LoginActivityMvc.
     TabLayout tableLayout;
     ViewPager viewPager;
     ViewPagerAdapter viewPagerAdapter;
-    FloatingActionButton submitBtn;
+    FloatingActionButton submitBtn , enterCodeBtn;
+    EditText codeEditText;
     ProgressBar progressBar;
     SignUpFragment signUpFragment;
     int timeToResendCode = 60;//IN SECONDS
@@ -37,6 +39,16 @@ public class LoginActivityMvcImp extends BaseObservableMvcView<LoginActivityMvc.
     public LoginActivityMvcImp(LayoutInflater inflater , ViewGroup parent , FragmentManager fragmentManager) {
         setRootView(inflater.inflate(R.layout.login_register_activity, parent , false));
         init(fragmentManager);
+        enterCodeBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                for(Listener listener : getmListeners()){
+                    listener.onEnterCodeBtnClicked(codeEditText.getText().toString());
+                }
+            }
+        });
+
+
         skipBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -53,7 +65,7 @@ public class LoginActivityMvcImp extends BaseObservableMvcView<LoginActivityMvc.
                         listener.onResendCodeBtnClicked();
                     }
                 }else{
-                    Toast.makeText(getContext(), "Osbr ya 3m fadl " + timerTextView.getText() + " sanya", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getContext(), "wait " + timerTextView.getText() + " seconds", Toast.LENGTH_SHORT).show();
                 }
 
             }
@@ -92,7 +104,9 @@ public class LoginActivityMvcImp extends BaseObservableMvcView<LoginActivityMvc.
         loginLayout = findViewById(R.id.loginLayout);
         codeEnterLayout = findViewById(R.id.codeEnterLayout);
         skipBtn = findViewById(R.id.skipBtn);
+        codeEditText = findViewById(R.id.CodeText);
         timerTextView = findViewById(R.id.timerTextView);
+        enterCodeBtn = findViewById(R.id.EnterCodeBtn);
         resendTextView = findViewById(R.id.resendTextView);
         signUpFragment = new SignUpFragment();
         tableLayout =  findViewById(R.id.tablLayout);

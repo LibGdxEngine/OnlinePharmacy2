@@ -75,6 +75,28 @@ public class FetchProductsUseCase extends BaseObservableMvcView<FetchProductsUse
             }
         });
     }
+    public void getCategoriesWithIDs(final ArrayList<String> ids){
+        databaseReference = database.getReference("Products");
+        databaseReference.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                productList = new ArrayList<>();
+                for (DataSnapshot postSnap: dataSnapshot.getChildren()) {
+                    Product model = postSnap.getValue(Product.class);
+                    if(ids.contains(model.getId())){
+                        productList.add(model);
+                    }
+                }
+                Collections.reverse(productList);
+                notifyDataChange(productList);
+
+            }
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+                notifyDataCancelled(databaseError);
+            }
+        });
+    }
 
     public void deleteCategory(String productId){
         FirebaseDatabase database = FirebaseDatabase.getInstance();

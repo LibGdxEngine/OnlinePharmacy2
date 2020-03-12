@@ -140,6 +140,22 @@ public class CartMvcImp extends BaseObservableMvcView<CartMvc.Listener> implemen
         return totalPrice;
     }
 
+    public ArrayList<String> getProductsIds(){
+        ArrayList<String> productsIds = new ArrayList<String>();
+        for(Product product : cartProductList ){
+            productsIds.add(product.getId());
+        }
+        return productsIds;
+    }
+
+    public ArrayList<Integer> getProductsCounts(){
+        ArrayList<Integer> productsCountList = new ArrayList<>();
+        for(String countAsString : cartProductsCountList){
+            productsCountList.add(Integer.parseInt(countAsString));
+        }
+        return productsCountList;
+    }
+
     @Override
     public boolean isCartEmpty() {
         if(totalPrice == deliveryCost){

@@ -42,9 +42,9 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         navigationView.setNavigationItemSelectedListener(this);
         // Passing each menu ID as a set of Ids because each
         // menu should be considered as top level destinations.
-        mAppBarConfiguration = new AppBarConfiguration.Builder(R.id.nav_bills ,
-                R.id.nav_home, R.id.nav_products,
-                R.id.nav_add_item, R.id.nav_personal_care, R.id.contactUs)
+        mAppBarConfiguration = new AppBarConfiguration.Builder(R.id.nav_orders ,
+                R.id.nav_home,R.id.nav_account,
+                R.id.nav_add_item, R.id.accountFragment, R.id.contactUs)
                 .setDrawerLayout(drawer)
                 .build();
         
@@ -52,6 +52,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
 
         NavigationUI.setupActionBarWithNavController(this, navController, mAppBarConfiguration);
+
 //        NavigationUI.setupWithNavController(navigationView, navController);
 
     }
@@ -103,6 +104,15 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 navController.navigate(R.id.cartFragment);
                 break;
             }
+            case R.id.nav_account:{
+                navController.navigate(R.id.accountFragment);
+                break;
+            }
+            case R.id.nav_orders:{
+                navController.navigate(R.id.ordersListFragment);
+                break;
+            }
+
         }
         //close navigation drawer
         drawer.closeDrawer(GravityCompat.START);

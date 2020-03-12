@@ -36,7 +36,7 @@ public class LoginRegisterUseCase extends BaseObservableMvcView<LoginRegisterUse
         void onVerificationCompleted();
         void onVerificationFailed(String message);
         void onCodeSent();
-        void onCodeSentAndUserSuccessfullyRegister();
+        void onCodeSentAndUserSuccessfullyRegister(FirebaseUser user);
         void onCodeSentAndUserFailedToRegister(String message);
     }
 
@@ -136,7 +136,7 @@ public class LoginRegisterUseCase extends BaseObservableMvcView<LoginRegisterUse
                             Log.d(TAG, "signInWithCredential:success");
 
                             FirebaseUser user = task.getResult().getUser();
-                            notifyOnCodeSentAndUserSuccessfullyRegister();
+                            notifyOnCodeSentAndUserSuccessfullyRegister(user);
                             // ...
                         } else {
                             // Sign in failed, display a message and update the UI
@@ -168,9 +168,9 @@ public class LoginRegisterUseCase extends BaseObservableMvcView<LoginRegisterUse
         }
     }
 
-    public void notifyOnCodeSentAndUserSuccessfullyRegister(){
+    public void notifyOnCodeSentAndUserSuccessfullyRegister(FirebaseUser user){
         for(Listener listener : getmListeners()){
-            listener.onCodeSentAndUserSuccessfullyRegister();
+            listener.onCodeSentAndUserSuccessfullyRegister(user);
         }
     }
 

@@ -10,20 +10,39 @@ import android.widget.Toast;
 import com.devahmed.demo.onlinepharmacy.Common.MVC.MvcView;
 import com.devahmed.demo.onlinepharmacy.Common.Navigator.Navigator;
 import com.devahmed.demo.onlinepharmacy.MainActivity;
+import com.devahmed.demo.onlinepharmacy.Models.User;
 import com.devahmed.demo.onlinepharmacy.R;
+import com.devahmed.demo.onlinepharmacy.Screens.LocationAtFirstTime.LocationAtFirstTime;
 import com.devahmed.demo.onlinepharmacy.Screens.LoginRegister.LoginRegisterUseCase.LoginRegisterUseCase;
+import com.devahmed.demo.onlinepharmacy.Screens.UserAccount.UseCases.AddUserUseCase;
+import com.devahmed.demo.onlinepharmacy.Screens.UserAccount.UseCases.FetchUserInfoFromFirebaseUseCase;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.FirebaseDatabase;
 
-public class LoginActivity extends AppCompatActivity implements LoginActivityMvc.Listener, LoginRegisterUseCase.Listener {
+import java.util.List;
+
+public class LoginActivity extends AppCompatActivity implements LoginActivityMvc.Listener, LoginRegisterUseCase.Listener, AddUserUseCase.Listener, FetchUserInfoFromFirebaseUseCase.Listener {
     LoginActivityMvcImp mvcImp;
     LoginRegisterUseCase loginRegisterUseCase;
+    AddUserUseCase addUserUseCase;
+    FetchUserInfoFromFirebaseUseCase userInfoFromFirebaseUseCase;
+    String FN = "";
+    String MODE = "CREATE_NEW_USER";//other mode is //UPDATE_EXISTING_USER
+    User existingUser = null;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         requestWindowFeature(Window.FEATURE_NO_TITLE);//will hide the title
         getSupportActionBar().hide(); //hide the title bar
         mvcImp = new LoginActivityMvcImp(getLayoutInflater() , null , getSupportFragmentManager());
-        loginRegisterUseCase = new LoginRegisterUseCase(this);
 
+        if(getIntent().getExtras() != null){
+            FN = getIntent().getExtras().getString("FN");
+        }
+        userInfoFromFirebaseUseCase = new FetchUserInfoFromFirebaseUseCase(FirebaseDatabase.getInstance());
+        loginRegisterUseCase = new LoginRegisterUseCase(this);
+        addUserUseCase = new AddUserUseCase(this);
         setContentView(mvcImp.getRootView());
     }
 
@@ -31,6 +50,7 @@ public class LoginActivity extends AppCompatActivity implements LoginActivityMvc
     public void onSubmitBtnCLicked() {
         mvcImp.showProgressbar();
         loginRegisterUseCase.registerNewUser(mvcImp.getRegisterPhoneNumber());
+
     }
 
     @Override
@@ -48,6 +68,11 @@ public class LoginActivity extends AppCompatActivity implements LoginActivityMvc
         Intent intent = new Intent(LoginActivity.this , MainActivity.class);
         startActivity(intent);
         finish();
+    }
+
+    @Override
+    public void onEnterCodeBtnClicked(String code) {
+        loginRegisterUseCase.signInWithCode(code);
     }
 
 
@@ -70,10 +95,25 @@ public class LoginActivity extends AppCompatActivity implements LoginActivityMvc
     }
 
     @Override
-    public void onCodeSentAndUserSuccessfullyRegister() {
-        Intent intent = new Intent(LoginActivity.this , MainActivity.class);
-        startActivity(intent);
-        finish();
+    public void onCodeSentAndUserSuccessfullyRegister(FirebaseUser user) {
+        if(MODE.equals("UPDATE_EXISTING_USER")){
+           //just do nothing
+        }else{
+            //create new user with just userId & phone number
+            addUserUseCase.addNewUser(user.getUid() , mvcImp.getRegisterPhoneNumber());
+        }
+
+
+        if(FN.equals("signUp")){
+            //if we came from cart or account page to signup then just finish the activity to return to the same page
+            finish();
+        }else{
+            //if wa came from splash activity just go to the mainActivity
+            Intent intent = new Intent(LoginActivity.this , LocationAtFirstTime.class);
+            startActivity(intent);
+            finish();
+        }
+
     }
 
     @Override
@@ -87,6 +127,9 @@ public class LoginActivity extends AppCompatActivity implements LoginActivityMvc
         super.onStart();
         mvcImp.registerListener(this);
         loginRegisterUseCase.registerListener(this);
+        addUserUseCase.registerListener(this);
+        userInfoFromFirebaseUseCase.registerListener(this);
+        userInfoFromFirebaseUseCase.getAllUsers();
     }
 
     @Override
@@ -94,5 +137,41 @@ public class LoginActivity extends AppCompatActivity implements LoginActivityMvc
         super.onStop();
         mvcImp.unregisterListener(this);
         loginRegisterUseCase.unregisterListener(this);
+        addUserUseCase.unregisterListener(this);
+        userInfoFromFirebaseUseCase.unregisterListener(this);
+    }
+
+    @Override
+    public void onUserAddedSuccessfully() {
+
+    }
+
+    @Override
+    public void onUserFailedToAdd() {
+    }
+
+    @Override
+    public void onInputError(String message) {
+        Toast.makeText(this, "Login " + message, Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
+    public void onUserDataUpdated(User user) {
+
+    }
+
+    @Override
+    public void onUserDataGotSuccessfully(List<User> userList) {
+        for(User user : userList){
+            if(user.getPhone().equals(mvcImp.getRegisterPhoneNumber())){
+                MODE = "UPDATE_EXISTING_USER";
+                existingUser = user;
+            }
+        }
+    }
+
+    @Override
+    public void onUserDataCanceled(DatabaseError error) {
+
     }
 }

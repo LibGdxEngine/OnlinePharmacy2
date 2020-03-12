@@ -22,6 +22,9 @@
         <action
             android:id="@+id/action_nav_home_to_searchFragment"
             app:destination="@id/searchFragment" />
+        <action
+            android:id="@+id/action_nav_home_to_accountFragment"
+            app:destination="@id/accountFragment" />
     </fragment>
 
     <fragment
@@ -63,7 +66,7 @@
     <fragment
         android:id="@+id/adminFragment"
         android:name="com.devahmed.demo.onlinepharmacy.Screens.AdminDashboard.AdminFragment"
-        android:label="AdminFragment" />
+        android:label="Admin Panel" />
     <fragment
         android:id="@+id/cartFragment"
         android:name="com.devahmed.demo.onlinepharmacy.Screens.Cart.CartFragment"
@@ -72,6 +75,46 @@
             android:id="@+id/action_cartFragment_to_nav_home"
             app:destination="@id/nav_home" />
     </fragment>
+    <fragment
+        android:id="@+id/accountFragment"
+        android:name="com.devahmed.demo.onlinepharmacy.Screens.UserAccount.AccountFragment"
+        android:label="Your Info">
+        <action
+            android:id="@+id/action_accountFragment_to_nav_home"
+            app:destination="@id/nav_home" />
+    </fragment>
+    <fragment
+        android:id="@+id/orderDetailsFragment"
+        android:name="com.devahmed.demo.onlinepharmacy.Screens.Orders.OrdersDetails.OrderDetailsFragment"
+        android:label="Order Details" />
+    <fragment
+        android:id="@+id/ordersListFragment"
+        android:name="com.devahmed.demo.onlinepharmacy.Screens.Orders.MyOrdersList.OrdersListFragment"
+        android:label="Your Orders" />
+    <fragment
+        android:id="@+id/usersControlFragment"
+        android:name="com.devahmed.demo.onlinepharmacy.Screens.AdminDashboard.UsersControl.UsersControlFragment"
+        android:label="Users" />
+    <fragment
+        android:id="@+id/branchesControlFragment"
+        android:name="com.devahmed.demo.onlinepharmacy.Screens.AdminDashboard.BranchesControl.BranchesControlFragment"
+        android:label="Branches" />
+    <fragment
+        android:id="@+id/ordersControlFragment"
+        android:name="com.devahmed.demo.onlinepharmacy.Screens.AdminDashboard.OrdersControl.OrdersControlFragment"
+        android:label="Orders Control" />
+    <fragment
+        android:id="@+id/billsFragment"
+        android:name="com.devahmed.demo.onlinepharmacy.Screens.AdminDashboard.BillsControl.BillsFragment"
+        android:label="Bills" />
+    <fragment
+        android:id="@+id/fullScreenBillFragment"
+        android:name="com.devahmed.demo.onlinepharmacy.Screens.AdminDashboard.BillsControl.FullScreenBillFragment.FullScreenBillFragment"
+        android:label="FullScreenBillFragment" />
+    <fragment
+        android:id="@+id/pushNotificationsFragment"
+        android:name="com.devahmed.demo.onlinepharmacy.Screens.AdminDashboard.NotificationsControl.PushNotificationsFragment"
+        android:label="PushNotificationsFragment" />
 
 
 </navigation>
