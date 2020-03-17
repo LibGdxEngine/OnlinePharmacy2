@@ -1,5 +1,5 @@
 <resources>
-    <string name="admin">true</string>
+    <string name="admin">false</string>
     <string name="app_name"> \tFox Mart \t</string>
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
@@ -100,4 +100,7 @@
     <string name="order_at">وقت توصيل الطلب</string>
     <string name="tnow">التوصيل حالا</string>
     <string name="tlater">في وقت لاحق</string>
+    <string name="exit">خروج</string>
+    <string name="rate">تقييم</string>
+    <string name="share_app">مشاركة التطبيق</string>
 </resources>

@@ -8,6 +8,7 @@ import android.Manifest;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
+import android.graphics.Color;
 import android.location.Location;
 import android.os.Bundle;
 import android.view.View;
@@ -24,7 +25,6 @@ import com.devahmed.techx.foxmart.Screens.AdminDashboard.BranchesControl.UseCase
 import com.devahmed.techx.foxmart.Screens.HowDidYouHearAboutUs.HowDidYouHearAboutUsActivity;
 import com.devahmed.techx.foxmart.Screens.UserAccount.UseCases.AddUserUseCase;
 import com.devahmed.techx.foxmart.Screens.UserAccount.UseCases.FetchUserInfoFromFirebaseUseCase;
-import com.devahmed.techx.foxmart.Utils.UtilsDialog;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.FirebaseDatabase;
@@ -60,6 +60,7 @@ public class LocationAtFirstTime extends AppCompatActivity implements GetLocatio
         getLocationButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                if(currentUser == null || dataList == null) return;
                 if(ContextCompat.checkSelfPermission(getApplicationContext() , Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED){
                     ActivityCompat.requestPermissions(LocationAtFirstTime.this , new String[] {Manifest.permission.ACCESS_FINE_LOCATION} , 1);
                 }else{
@@ -76,74 +77,68 @@ public class LocationAtFirstTime extends AppCompatActivity implements GetLocatio
         userLocation = new Location("userProvider");
         userLocation.setLatitude(mLat);
         userLocation.setLongitude(mLong);
+        locationUseCase.getGpsLocation();
+//        Toast.makeText(getApplicationContext(), "lat " + mLat + " : " + "long " + mLong, Toast.LENGTH_SHORT).show();
     }
 
     @Override
     public void onGpsLocationLoaded(String gpsLocation) {
+        Toast.makeText(this, "" + gpsLocation, Toast.LENGTH_SHORT).show();
         userGpsLocation = gpsLocation;
         checkIfUserCanGoHome();
     }
 
     private void checkIfUserCanGoHome() {
-        new Thread(new Runnable() {
-            @Override
-            public void run() {
-                if (dataList == null || currentUser == null) {
-                    try {
-                        Thread.sleep(1000);
-                    } catch (InterruptedException e) {
-                        e.printStackTrace();
-                    }
-                    checkIfUserCanGoHome();
-                }else{
-                    int acceptedBranchIndex = -1;
-                    for (int i = 0; i < dataList.size(); i++) {
-                        String[] branch = dataList.get(i).getGpsLocation().split(",");
-                        String[] userGpsLocations = userGpsLocation.split(",");
-                        //check if the user is in the same country as the branch
-                        if (branch[1].equals(userGpsLocations[1])) {
-                            //user is in the same city => we then check the distance
-                            stepOneApprove = true;
-                            Location branchLocation = new Location("providerNA");
-                            branchLocation.setLatitude(dataList.get(i).getmLat());
-                            branchLocation.setLongitude(dataList.get(i).getmLong());
-                            double acceptedRangeInMeters = dataList.get(i).getAcceptedOrdersRange() * 1000;
-                            if (userLocation.distanceTo(branchLocation) <= acceptedRangeInMeters) {
-                                //user can go he is approved
-                                //link the user with this branch
-                                stepTwoApprove = true;
-                                acceptedBranchIndex = i;
-                                break;
-                            }
-                        }
-                    }
-                    //if user is in the same city with an accepted distance
-                    //we link him to some branch
-                    if (stepOneApprove && stepTwoApprove) {
-                        if (acceptedBranchIndex != -1) {
-                            currentUser.setNearestBranch(dataList.get(acceptedBranchIndex).getId());
-                            SharedPreferences sharedPreferences = getApplicationContext().getSharedPreferences("userBranch" , 0);
-                            SharedPreferences.Editor editor = sharedPreferences.edit();
-                            editor.putString("userBranch" , dataList.get(acceptedBranchIndex).getId());
-                            editor.commit();
-                            currentUser.setyPos(userLocation.getLatitude());
-                            currentUser.setyPos(userLocation.getLongitude());
-                            currentUser.setGpsAddress(userGpsLocation);
-                            userUseCase.updateExistingUserAndDeleteExtraUser(currentUser);
-                        }
-                    } else {
-                        UtilsDialog dialog = new UtilsDialog(getApplicationContext());
-                        dialog.showTextMessage("sorry you are not allowed to use this app");
-                        System.out.println("sorry you are not allowed to use this app");
-                    }
+        int acceptedBranchIndex = -1;
+        for (int i = 0; i < dataList.size(); i++) {
+            String[] branch = dataList.get(i).getGpsLocation().split(",");
+            String[] userGpsLocations = userGpsLocation.split(",");
+            //check if the user is in the same country as the branch
+            if (true) {
+                //user is in the same city => we then check the distance
+                stepOneApprove = true;
+                Location branchLocation = new Location("providerNA");
+                branchLocation.setLatitude(dataList.get(i).getmLat());
+                branchLocation.setLongitude(dataList.get(i).getmLong());
+                double acceptedRangeInMeters = dataList.get(i).getAcceptedOrdersRange() * 1000;
+                if (userLocation.distanceTo(branchLocation) <= acceptedRangeInMeters) {
+                   //user can go he is approved
+                    //link the user with this branch
+                    stepTwoApprove = true;
+                    acceptedBranchIndex = i;
+                    break;
                 }
             }
-        }).start();
+        }
+        //if user is in the same city with an accepted distance
+        //we link him to some branch
+        System.out.println("check distance = " + stepTwoApprove + " check city = " + stepOneApprove);
+        if (stepOneApprove && stepTwoApprove) {
+            if (acceptedBranchIndex != -1) {
+                currentUser.setNearestBranch(dataList.get(acceptedBranchIndex).getId());
+                SharedPreferences sharedPreferences = getApplicationContext().getSharedPreferences("userBranch" , 0);
+                SharedPreferences.Editor editor = sharedPreferences.edit();
+                editor.putString("userBranch" , dataList.get(acceptedBranchIndex).getId());
+                editor.commit();
+                currentUser.setyPos(userLocation.getLatitude());
+                currentUser.setyPos(userLocation.getLongitude());
+                currentUser.setGpsAddress(userGpsLocation);
+                userUseCase.updateExistingUserAndDeleteExtraUser(currentUser);
+            }
+        } else {
+            weNeedYourLocationTextView.setTextColor(Color.RED);
+            weNeedYourLocationTextView.setText("sorry you are not allowed to use this app\"");
+            System.out.println("sorry you are not allowed to use this app");
+            progressBar.setVisibility(View.INVISIBLE);
+            getLocationButton.setVisibility(View.VISIBLE);
+        }
     }
+
 
     @Override
     public void onError(String message) {
-        Toast.makeText(this, "" + message, Toast.LENGTH_SHORT).show();
+        Toast.makeText(this, "Error " + message, Toast.LENGTH_SHORT).show();
+        //checkIfUserCanGoHomeWithoutCityNameCheck();
     }
 
 
@@ -166,8 +161,13 @@ public class LocationAtFirstTime extends AppCompatActivity implements GetLocatio
     public void onUserDataUpdated(User user) {
 //        getLocationButton.setVisibility(View.VISIBLE);
 //        progressBar.setVisibility(View.INVISIBLE);
+        SharedPreferences sharedPreferences = getApplicationContext().getSharedPreferences("userBranch" , 0);
+        SharedPreferences.Editor edit = sharedPreferences.edit();
+        edit.putBoolean("gotUserLocation?" , true);
+        edit.commit();
         Intent intent = new Intent(LocationAtFirstTime.this , HowDidYouHearAboutUsActivity.class);
         startActivity(intent);
+        finish();
     }
 
     @Override

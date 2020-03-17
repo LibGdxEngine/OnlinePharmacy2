@@ -73,7 +73,7 @@ public class BranchesMvcImp extends BaseObservableMvcView<BranchesMvc.Listener> 
         recyclerView.setHasFixedSize(true);
         branchesList = new ArrayList<>();
         progressBar = findViewById(R.id.progressBar);
-        adapter = new BranchesAdapter(branchesList);
+        adapter = new BranchesAdapter(getContext() , branchesList);
         recyclerView.setAdapter(adapter);
         addBranchBtn = findViewById(R.id.addBranchBtn);
     }

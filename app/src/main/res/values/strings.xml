@@ -1,5 +1,5 @@
 <resources>
-    <string name="admin">true</string>
+    <string name="admin">false</string>
     <string name="app_name"> \tFox Mart \t</string>
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
@@ -99,4 +99,7 @@
     <string name="order_at">Order At</string>
     <string name="tnow">\tNow</string>
     <string name="tlater">\tLater</string>
+    <string name="exit">exit</string>
+    <string name="rate">rate</string>
+    <string name="share_app">share app</string>
 </resources>

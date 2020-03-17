@@ -3,7 +3,6 @@ package com.devahmed.techx.foxmart.Screens.AdminDashboard.BranchesControl.UseCas
 import android.app.Activity;
 import android.location.Address;
 import android.location.Geocoder;
-import android.widget.Toast;
 
 import com.devahmed.techx.foxmart.Common.MVC.BaseObservableMvcView;
 import com.google.android.gms.location.LocationCallback;
@@ -18,6 +17,7 @@ public class GetLocationUseCase extends BaseObservableMvcView<GetLocationUseCase
 
     private Activity activity;
     LocationRequest locationRequest;
+    private double mLat , mLong;
     public interface Listener{
         void onLatLongLoaded(double mLat , double mLong);
         void onGpsLocationLoaded(String gpsLocation);
@@ -28,25 +28,26 @@ public class GetLocationUseCase extends BaseObservableMvcView<GetLocationUseCase
     }
 
 
-    private void getGpsLocation(){
+    private void getGpsLocation(double x , double y){
         String errorMessage = "";
         String city = "Unknown";
         Geocoder geocoder = new Geocoder(activity, Locale.getDefault());
         List<Address> addresses = null;
         try {
-            addresses = geocoder.getFromLocation(30.0113027,31.3131621  , 1);
+            addresses = geocoder.getFromLocation(x,y  , 1);
         }catch (Exception e){
 
             errorMessage = e.getMessage();
         }
         if(addresses == null || addresses.isEmpty()){
-            Toast.makeText(activity, "Address Not Found " + errorMessage, Toast.LENGTH_SHORT).show();
+//            Toast.makeText(activity, "Address Not Found " + errorMessage, Toast.LENGTH_SHORT).show();
+            notifyError("Address Not Found " + errorMessage);
         }else{
-
             city = addresses.get(0).getAddressLine(0);
         }
         notifyOnGpsLocationLoaded(city);
     }
+
 
     public void getLocation(){
 
@@ -71,6 +72,8 @@ public class GetLocationUseCase extends BaseObservableMvcView<GetLocationUseCase
                             int latestLocationIndex = locationResult.getLocations().size() - 1;
                             double latitude = locationResult.getLocations().get(latestLocationIndex).getLatitude();
                             double longitude = locationResult.getLocations().get(latestLocationIndex).getLongitude();
+                            mLat = latitude;
+                            mLong = longitude;
                             notifyOnLatLongLoaded(latitude , longitude);
                             getGpsLocation();
                         }else{
@@ -80,6 +83,9 @@ public class GetLocationUseCase extends BaseObservableMvcView<GetLocationUseCase
                 }, activity.getMainLooper());
     }
 
+    public void getGpsLocation(){
+        getGpsLocation(this.mLat , this.mLong);
+    }
 
 
     void notifyOnLatLongLoaded(double mLat , double mLong){
@@ -93,4 +99,11 @@ public class GetLocationUseCase extends BaseObservableMvcView<GetLocationUseCase
             listener.onGpsLocationLoaded(gpsLocation);
         }
     }
+
+    private void notifyError(String s) {
+        for(Listener listener :getmListeners()){
+            listener.onError(s);
+        }
+    }
+
 }

@@ -14,7 +14,6 @@ import com.devahmed.techx.foxmart.Models.Order;
 import com.devahmed.techx.foxmart.Models.Product;
 import com.devahmed.techx.foxmart.Models.User;
 import com.devahmed.techx.foxmart.R;
-import com.devahmed.techx.foxmart.Screens.AddProducts.AddProductUseCase.AddProductUseCase;
 import com.devahmed.techx.foxmart.Screens.AdminDashboard.BranchesControl.UseCases.GetLocationUseCase;
 import com.devahmed.techx.foxmart.Screens.LoginRegister.LoginActivity;
 import com.devahmed.techx.foxmart.Screens.ProductsShow.UseCases.FetchProductsUseCase;

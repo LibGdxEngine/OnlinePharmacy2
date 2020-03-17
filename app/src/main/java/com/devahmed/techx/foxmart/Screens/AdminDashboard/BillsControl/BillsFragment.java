@@ -1,6 +1,5 @@
 package com.devahmed.techx.foxmart.Screens.AdminDashboard.BillsControl;
 
-import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.os.Handler;
 import android.view.LayoutInflater;

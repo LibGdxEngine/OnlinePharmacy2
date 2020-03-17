@@ -9,7 +9,6 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.devahmed.techx.foxmart.Models.Order;
 import com.devahmed.techx.foxmart.Models.User;
-import com.devahmed.techx.foxmart.Screens.Orders.MyOrdersList.UseCases.FetchOrdersUseCase;
 import com.devahmed.techx.foxmart.Screens.UserAccount.UseCases.FetchUserInfoFromFirebaseUseCase;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.FirebaseDatabase;

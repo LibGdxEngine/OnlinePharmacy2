@@ -1,5 +1,8 @@
 package com.devahmed.techx.foxmart.Screens.AdminDashboard.BranchesControl;
 
+import android.content.Context;
+import android.content.SharedPreferences;
+import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,12 +15,14 @@ import com.devahmed.techx.foxmart.R;
 
 import java.util.List;
 
-public class BranchesAdapter extends RecyclerView.Adapter<BranchesAdapter.ViewHolder> {
+public class BranchesAdapter extends RecyclerView.Adapter<BranchesAdapter.ViewHolder>  {
 
     private List<Branch> BranchsList;
-
-    public BranchesAdapter(List<Branch> BranchsList) {
+    private String adminBranch;
+    public BranchesAdapter(Context context , List<Branch> BranchsList) {
         this.BranchsList = BranchsList;
+        SharedPreferences sharedPreferences = context.getSharedPreferences("userBranch" , 0);
+        this.adminBranch = sharedPreferences.getString("userBranch" , "-M277YZ-fwm7UIQrJZQ6");
     }
 
     @Override
@@ -31,6 +36,13 @@ public class BranchesAdapter extends RecyclerView.Adapter<BranchesAdapter.ViewHo
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
         Branch model = BranchsList.get(position);
+        if(model.getId().equals(adminBranch)){
+            holder.branchNameTextView.setTextColor(Color.GREEN);
+            holder.branchLocationTextView.setTextColor(Color.GREEN);
+        }else{
+            holder.branchNameTextView.setTextColor(Color.BLACK);
+            holder.branchLocationTextView.setTextColor(Color.BLACK);
+        }
         holder.branchLocationTextView.setText(model.getmLat() + " : " + model.getmLong());
         holder.branchNameTextView.setText(model.getName() + "\t\t " + model.getAcceptedOrdersRange() + "-Km");
     }
@@ -44,6 +56,7 @@ public class BranchesAdapter extends RecyclerView.Adapter<BranchesAdapter.ViewHo
         BranchsList = newList;
         notifyDataSetChanged();
     }
+
 
     public class ViewHolder extends RecyclerView.ViewHolder {
         TextView branchNameTextView , branchLocationTextView;

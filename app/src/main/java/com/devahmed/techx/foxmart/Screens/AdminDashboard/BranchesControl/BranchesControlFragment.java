@@ -1,5 +1,6 @@
 package com.devahmed.techx.foxmart.Screens.AdminDashboard.BranchesControl;
 
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -50,6 +51,10 @@ public class BranchesControlFragment extends Fragment implements BranchesMvc.Lis
         this.branch.setId(branch.getId());
         mvcImp.showAddBranchDialog();
         MODE = "EDIT";
+        SharedPreferences sharedPreferences = getContext().getSharedPreferences("userBranch" , 0);
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        editor.putString("userBranch" ,branch.getId());
+        editor.commit();
     }
 
     @Override
@@ -93,6 +98,7 @@ public class BranchesControlFragment extends Fragment implements BranchesMvc.Lis
     public void onLatLongLoaded(double mLat, double mLong) {
         branch.setmLat(mLat);
         branch.setmLong(mLong);
+        Toast.makeText(getContext(), "lat " + mLat + " : Long " + mLong, Toast.LENGTH_SHORT).show();
     }
 
     @Override

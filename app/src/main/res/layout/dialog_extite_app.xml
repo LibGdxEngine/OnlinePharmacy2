@@ -47,7 +47,7 @@
             android:layout_margin="5dp"
             android:layout_weight="1"
             android:background="@drawable/cart_submit_btn_background"
-            android:text="share app"
+            android:text="@string/share_app"
             android:textAlignment="center"
             android:textColor="@color/common_google_signin_btn_text_dark_pressed"
             android:textSize="14sp" />
@@ -59,7 +59,7 @@
             android:layout_margin="5dp"
             android:layout_weight="1"
             android:background="@drawable/cart_submit_btn_background"
-            android:text="rate"
+            android:text="@string/rate"
             android:textAlignment="center"
             android:textColor="@color/common_google_signin_btn_text_dark_pressed"
             android:textSize="14sp" />
@@ -71,7 +71,7 @@
             android:layout_margin="5dp"
             android:layout_weight="1"
             android:background="@drawable/cart_submit_btn_background"
-            android:text="exit"
+            android:text="@string/exit"
             android:textAlignment="center"
             android:textColor="@color/common_google_signin_btn_text_dark_pressed"
             android:textSize="14sp" />

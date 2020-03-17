@@ -13,6 +13,7 @@ import android.widget.ImageView;
 
 import com.devahmed.techx.foxmart.MainActivity;
 import com.devahmed.techx.foxmart.R;
+import com.devahmed.techx.foxmart.Screens.LocationAtFirstTime.LocationAtFirstTime;
 import com.devahmed.techx.foxmart.Screens.LoginRegister.LoginActivity;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -34,14 +35,7 @@ public class SplashActivity extends AppCompatActivity {
         firebaseAuth = firebaseAuth.getInstance();
         splash_imageImageView = findViewById(R.id.splashimage);
 
-        SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
-        String language = sharedPreferences.getString("language", "en");//en for english , ar for arabic
-        Locale locale = new Locale(language);
-        Locale.setDefault(locale);
-        Configuration config = new Configuration();
-        config.locale = locale;
-        getBaseContext().getResources().updateConfiguration(config,
-                getBaseContext().getResources().getDisplayMetrics());
+        loadAppLanguage();
 
 
         handler=new Handler();
@@ -61,10 +55,34 @@ public class SplashActivity extends AppCompatActivity {
         },SECONDS * 1000);
 
     }
+
+    private void loadAppLanguage() {
+        SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
+        String language = sharedPreferences.getString("language", "null");//en for english , ar for arabic
+        Locale locale;
+        if(language.equals("null")){
+            locale = new Locale(Locale.getDefault().getDisplayLanguage());
+        }else{
+            locale = new Locale(language);
+        }
+        Locale.setDefault(locale);
+        Configuration config = new Configuration();
+        config.locale = locale;
+        getBaseContext().getResources().updateConfiguration(config,
+                getBaseContext().getResources().getDisplayMetrics());
+    }
+
     //update UI for user and go other Activity
     private void updateUI() {
-        Intent intent = new Intent(SplashActivity.this , MainActivity.class);
-        startActivity(intent);
-        finish();
+        SharedPreferences sharedPreferences = getApplicationContext().getSharedPreferences("userBranch" , 0);
+        if(sharedPreferences.getBoolean("gotUserLocation?" , false)){
+            Intent intent = new Intent(SplashActivity.this , MainActivity.class);
+            startActivity(intent);
+            finish();
+        }else{
+            startActivity(new Intent(getBaseContext() , LocationAtFirstTime.class));
+            finish();
+        }
+
     }
 }

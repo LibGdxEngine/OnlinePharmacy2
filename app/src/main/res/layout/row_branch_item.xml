@@ -16,7 +16,7 @@
         <TextView
             android:id="@+id/branchNameTextView"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:layout_margin="5dp"
             android:text="Branch Name"
             android:textSize="18sp"
@@ -25,10 +25,11 @@
         <TextView
             android:id="@+id/branchLocationTextView"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:layout_margin="5dp"
             android:text="Branch Location"
             android:textAlignment="viewStart"
             android:textSize="18sp" />
+
     </LinearLayout>
 </androidx.cardview.widget.CardView>

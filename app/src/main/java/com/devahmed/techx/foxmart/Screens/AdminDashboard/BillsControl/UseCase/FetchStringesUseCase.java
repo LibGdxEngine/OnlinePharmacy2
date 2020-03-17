@@ -3,7 +3,6 @@ package com.devahmed.techx.foxmart.Screens.AdminDashboard.BillsControl.UseCase;
 import androidx.annotation.NonNull;
 
 import com.devahmed.techx.foxmart.Common.MVC.BaseObservableMvcView;
-import com.devahmed.techx.foxmart.Models.Product;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
