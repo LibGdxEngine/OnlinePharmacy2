@@ -31,7 +31,7 @@
         app:srcCompat="@drawable/location_image" />
 
     <TextView
-        android:id="@+id/textView9"
+        android:id="@+id/weNeedYourLocationText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
@@ -58,7 +58,7 @@
         android:textColor="@android:color/white"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView9" />
+        app:layout_constraintTop_toBottomOf="@+id/weNeedYourLocationText" />
 
     <ImageView
         android:id="@+id/imageView9"
@@ -69,6 +69,6 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toEndOf="@+id/getLocationBtn"
-        app:layout_constraintTop_toBottomOf="@+id/textView9"
+        app:layout_constraintTop_toBottomOf="@+id/weNeedYourLocationText"
         app:srcCompat="@drawable/ic_location_on_orange_24dp" />
 </androidx.constraintlayout.widget.ConstraintLayout>

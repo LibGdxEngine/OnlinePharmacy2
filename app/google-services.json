@@ -1,121 +1,42 @@
 {
   "project_info": {
-    "project_number": "734761226883",
-    "firebase_url": "https://facebook-video-downloade-c8bdd.firebaseio.com",
-    "project_id": "facebook-video-downloade-c8bdd",
-    "storage_bucket": "facebook-video-downloade-c8bdd.appspot.com"
+    "project_number": "315874300923",
+    "firebase_url": "https://foxmart-3f4f0.firebaseio.com",
+    "project_id": "foxmart-3f4f0",
+    "storage_bucket": "foxmart-3f4f0.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:734761226883:android:abf8479cc561831f3441b6",
+        "mobilesdk_app_id": "1:315874300923:android:733782da604bdd4aa9f15e",
         "android_client_info": {
-          "package_name": "com.devahmed.demo.onlinepharmacy"
+          "package_name": "com.devahmed.techx.foxmart"
         }
       },
       "oauth_client": [
         {
-          "client_id": "734761226883-402rqh3d8amt5b8pccc7epc1k79md376.apps.googleusercontent.com",
+          "client_id": "315874300923-m9d9lu30fdnbk42gosogfu8fffi01ppf.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.devahmed.techx.foxmart",
+            "certificate_hash": "108534525640e8ce540ba1aff9b72e2934fd8b75"
+          }
+        },
+        {
+          "client_id": "315874300923-0e7s37m0idqgnbvloe3mc8jegu36bos2.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyDkJIY6YJBinX-lVaIj2vbBncHAlopeJj8"
+          "current_key": "AIzaSyA-G-dICQ93wDYqPZTnuKtgySrC1zlVyfc"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "734761226883-402rqh3d8amt5b8pccc7epc1k79md376.apps.googleusercontent.com",
-              "client_type": 3
-            }
-          ]
-        }
-      }
-    },
-    {
-      "client_info": {
-        "mobilesdk_app_id": "1:734761226883:android:f86316972c772d74",
-        "android_client_info": {
-          "package_name": "com.devteam.downloadFromFB"
-        }
-      },
-      "oauth_client": [
-        {
-          "client_id": "734761226883-402rqh3d8amt5b8pccc7epc1k79md376.apps.googleusercontent.com",
-          "client_type": 3
-        }
-      ],
-      "api_key": [
-        {
-          "current_key": "AIzaSyDkJIY6YJBinX-lVaIj2vbBncHAlopeJj8"
-        }
-      ],
-      "services": {
-        "appinvite_service": {
-          "other_platform_oauth_client": [
-            {
-              "client_id": "734761226883-402rqh3d8amt5b8pccc7epc1k79md376.apps.googleusercontent.com",
-              "client_type": 3
-            }
-          ]
-        }
-      }
-    },
-    {
-      "client_info": {
-        "mobilesdk_app_id": "1:734761226883:android:05a3a98c693eb78f",
-        "android_client_info": {
-          "package_name": "com.devteam.fbdownloader"
-        }
-      },
-      "oauth_client": [
-        {
-          "client_id": "734761226883-402rqh3d8amt5b8pccc7epc1k79md376.apps.googleusercontent.com",
-          "client_type": 3
-        }
-      ],
-      "api_key": [
-        {
-          "current_key": "AIzaSyDkJIY6YJBinX-lVaIj2vbBncHAlopeJj8"
-        }
-      ],
-      "services": {
-        "appinvite_service": {
-          "other_platform_oauth_client": [
-            {
-              "client_id": "734761226883-402rqh3d8amt5b8pccc7epc1k79md376.apps.googleusercontent.com",
-              "client_type": 3
-            }
-          ]
-        }
-      }
-    },
-    {
-      "client_info": {
-        "mobilesdk_app_id": "1:734761226883:android:d1192f4ce94b43c4",
-        "android_client_info": {
-          "package_name": "com.devteam.myapplication"
-        }
-      },
-      "oauth_client": [
-        {
-          "client_id": "734761226883-402rqh3d8amt5b8pccc7epc1k79md376.apps.googleusercontent.com",
-          "client_type": 3
-        }
-      ],
-      "api_key": [
-        {
-          "current_key": "AIzaSyDkJIY6YJBinX-lVaIj2vbBncHAlopeJj8"
-        }
-      ],
-      "services": {
-        "appinvite_service": {
-          "other_platform_oauth_client": [
-            {
-              "client_id": "734761226883-402rqh3d8amt5b8pccc7epc1k79md376.apps.googleusercontent.com",
+              "client_id": "315874300923-0e7s37m0idqgnbvloe3mc8jegu36bos2.apps.googleusercontent.com",
               "client_type": 3
             }
           ]

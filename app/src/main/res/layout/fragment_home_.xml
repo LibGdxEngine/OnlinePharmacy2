@@ -7,45 +7,94 @@
     android:layout_height="match_parent"
     android:background="@color/common_google_signin_btn_text_dark_default">
 
-    <androidx.core.widget.NestedScrollView
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+    <androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="match_parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <ProgressBar
+                android:id="@+id/progressBar"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                android:indeterminateDrawable="@drawable/progressbar_background"
+                app:layout_constraintTop_toBottomOf="@+id/searchbar" />
+
+            <com.google.android.material.floatingactionbutton.FloatingActionButton
+                android:id="@+id/addCategoryBtn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="32dp"
+                android:layout_marginBottom="24dp"
+                android:clickable="true"
+                app:layout_constraintBottom_toTopOf="@+id/categoriesContainer"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="1.0"
+                app:layout_constraintStart_toStartOf="@+id/sliderView"
+                app:layout_constraintTop_toTopOf="@+id/searchbar"
+                app:layout_constraintVertical_bias="1.0"
+                app:srcCompat="@drawable/ic_add_white_24dp" />
+
+            <TextView
+                android:id="@+id/categoriesText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="8dp"
+                android:fontFamily="@font/myfont"
+                android:gravity="center|start"
+                android:paddingLeft="8dp"
+                android:paddingRight="8dp"
+                android:text="Categories"
+                android:textSize="24sp"
+                android:textStyle="bold"
+                android:visibility="invisible"
+                app:layout_constraintBottom_toTopOf="@+id/categoriesContainer"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/sliderView"
+                app:layout_constraintVertical_bias="0.0" />
 
             <EditText
                 android:id="@+id/searchbar"
-                style="@android:style/Widget.DeviceDefault.Light.EditText"
                 android:layout_width="match_parent"
                 android:layout_height="55dp"
                 android:layout_margin="10dp"
                 android:background="@drawable/searchbar_background"
-                android:drawableEnd="@drawable/ic_search_black_24dp"
+                android:drawableEnd="@drawable/ic_search_oragne_24dp"
+                android:elevation="10dp"
                 android:ems="10"
                 android:focusable="false"
                 android:fontFamily="@font/myfont"
                 android:hint="Search"
                 android:inputType="textPersonName"
                 android:padding="15dp"
+                android:visibility="invisible"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintVertical_bias="0.0" />
 
-
             <com.smarteist.autoimageslider.SliderView
                 android:id="@+id/sliderView"
                 android:layout_width="0dp"
-                android:layout_height="100dp"
+                android:layout_height="200dp"
                 android:layout_marginTop="16dp"
-                android:layout_marginBottom="32dp"
+                android:layout_marginBottom="8dp"
                 android:animateLayoutChanges="false"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -57,109 +106,39 @@
                 app:sliderAutoCycleEnabled="true"
                 app:sliderCircularHandlerEnabled="true"
                 app:sliderIndicatorAnimationDuration="600"
-                app:sliderIndicatorGravity="center_horizontal|top"
+                app:sliderIndicatorGravity="center_horizontal|bottom"
                 app:sliderIndicatorMargin="15dp"
                 app:sliderIndicatorOrientation="horizontal"
                 app:sliderIndicatorPadding="3dp"
                 app:sliderIndicatorRadius="2dp"
                 app:sliderIndicatorRtlMode="auto"
                 app:sliderIndicatorSelectedColor="@color/colorPrimary"
-                app:sliderIndicatorUnselectedColor="@color/colorPrimaryDark"
+                app:sliderIndicatorUnselectedColor="@android:color/white"
                 app:sliderScrollTimeInSec="6"
                 app:sliderStartAutoCycle="true">
 
             </com.smarteist.autoimageslider.SliderView>
 
-            <Button
-                android:id="@+id/button"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="24dp"
-                android:layout_marginTop="16dp"
-                android:layout_marginEnd="24dp"
-                android:layout_marginBottom="32dp"
-                android:text="Button"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/sliderView"
-                app:layout_constraintVertical_bias="0.0" />
-
             <LinearLayout
                 android:id="@+id/categoriesContainer"
                 android:layout_width="0dp"
-                android:layout_height="100dp"
-                android:layout_marginTop="24dp"
-                android:layout_marginBottom="32dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="50dp"
                 android:orientation="horizontal"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/button"
+                app:layout_constraintTop_toBottomOf="@+id/sliderView"
                 app:layout_constraintVertical_bias="0.0">
 
                 <androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/categoriesRecycler"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent" />
+                    android:layout_height="wrap_content" />
             </LinearLayout>
 
-            <LinearLayout
-                android:id="@+id/promotionProductsContainer"
-                android:layout_width="match_parent"
-                android:layout_height="270dp"
-                android:layout_marginTop="24dp"
-                android:layout_marginBottom="32dp"
-                android:orientation="horizontal"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/categoriesContainer"
-                app:layout_constraintVertical_bias="0.0"
-                tools:visibility="gone">
-
-                <androidx.recyclerview.widget.RecyclerView
-                    android:id="@+id/promotionProductsRecyclerView"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    tools:visibility="gone" />
-            </LinearLayout>
-
-            <LinearLayout
-                android:id="@+id/bestSellerProductsContainer"
-                android:layout_width="match_parent"
-                android:layout_height="100dp"
-                android:layout_marginStart="24dp"
-                android:layout_marginTop="16dp"
-                android:layout_marginEnd="24dp"
-                android:layout_marginBottom="32dp"
-                android:orientation="horizontal"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/promotionProductsContainer"
-                app:layout_constraintVertical_bias="0.0"
-                tools:visibility="gone">
-
-                <androidx.recyclerview.widget.RecyclerView
-                    android:id="@+id/bestSelletRecyclerView"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    tools:visibility="gone" />
-            </LinearLayout>
-
-            <androidx.constraintlayout.widget.ConstraintLayout
-                android:layout_width="0dp"
-                android:layout_height="100dp"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/bestSellerProductsContainer">
-
-            </androidx.constraintlayout.widget.ConstraintLayout>
 
         </androidx.constraintlayout.widget.ConstraintLayout>
-
     </androidx.core.widget.NestedScrollView>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

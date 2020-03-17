@@ -7,6 +7,21 @@
     android:layout_width="410dp"
     android:layout_height="match_parent">
 
+    <ImageView
+        android:id="@+id/cancelImageBtn"
+        android:layout_width="35dp"
+        android:layout_height="35dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="16dp"
+        android:layout_weight="1"
+        app:layout_constraintBottom_toTopOf="@+id/addpost_progressbar"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0"
+        app:srcCompat="@drawable/ic_cancel_orange_24dp" />
+
     <ProgressBar
         android:id="@+id/addpost_progressbar"
         style="@style/Animation.Design.BottomSheetDialog"
@@ -56,7 +71,7 @@
                 android:layout_marginEnd="32dp"
                 android:layout_marginBottom="100dp"
                 android:gravity="center"
-                android:orientation="horizontal"
+                android:orientation="vertical"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -67,6 +82,32 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Make as offer " />
+
+                <EditText
+                    android:id="@+id/pointsText"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp"
+                    android:background="@drawable/add_post_edittexts_background"
+                    android:ems="10"
+                    android:fontFamily="@font/myfont"
+                    android:hint="Point for this item"
+                    android:inputType="number"
+                    android:visibility="gone" />
+
+                <LinearLayout
+                    android:id="@+id/branchedContainer"
+                    android:layout_width="match_parent"
+                    android:layout_height="300dp"
+                    android:layout_marginTop="15dp"
+                    android:orientation="vertical"
+                    android:visibility="gone">
+
+                    <RadioGroup
+                        android:id="@+id/branchesRadioGroup"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent" />
+                </LinearLayout>
 
             </LinearLayout>
 
@@ -104,9 +145,11 @@
                     android:id="@+id/addpost_fullviewImageView"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
+                    android:layout_marginRight="16dp"
                     android:scaleType="centerCrop"
                     android:visibility="gone"
                     tools:srcCompat="@tools:sample/avatars" />
+
             </LinearLayout>
 
             <TextView
@@ -141,8 +184,9 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
-                android:layout_marginTop="8dp"
+                android:layout_marginTop="16dp"
                 android:layout_marginEnd="16dp"
+                android:layout_marginBottom="16dp"
                 android:text="Add a new Product "
                 android:textSize="36sp"
                 app:layout_constraintBottom_toTopOf="@+id/linearLayout"
@@ -156,7 +200,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
                 android:layout_marginTop="8dp"
-                android:layout_marginEnd="32dp"
+                android:layout_marginEnd="16dp"
                 android:background="@drawable/add_post_edittexts_background"
                 android:ems="10"
                 android:hint="product name"
@@ -223,6 +267,44 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/addpost_recipename"
                 app:layout_constraintVertical_bias="0.0" />
+
+            <LinearLayout
+                android:id="@+id/countsContainer"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginEnd="16dp"
+                android:layout_marginBottom="16dp"
+                android:orientation="vertical"
+                android:visibility="gone"
+                app:layout_constraintBottom_toTopOf="@+id/linearLayout2"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="1.0"
+                app:layout_constraintStart_toEndOf="@+id/addpost_recipequantities"
+                app:layout_constraintTop_toBottomOf="@+id/addpost_recipename"
+                app:layout_constraintVertical_bias="0.0">
+
+                <TextView
+                    android:id="@+id/textView2"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="5dp"
+                    android:fontFamily="@font/myfont"
+                    android:text="Enter Count"
+                    android:textSize="18sp"
+                    android:visibility="visible" />
+
+                <EditText
+                    android:id="@+id/countText"
+                    android:layout_width="120dp"
+                    android:layout_height="51dp"
+                    android:background="@drawable/add_post_edittexts_background"
+                    android:ems="10"
+                    android:hint="Count "
+                    android:inputType="number"
+                    android:visibility="visible" />
+            </LinearLayout>
 
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.core.widget.NestedScrollView>
