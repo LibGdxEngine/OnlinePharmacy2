@@ -31,6 +31,7 @@
                 android:layout_weight="2"
                 android:fontFamily="@font/myfont"
                 android:paddingLeft="3dp"
+                android:shadowColor="#8D8D8D"
                 android:text="TextView"
                 android:textSize="18sp" />
 

@@ -5,6 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="250dp"
     android:layout_margin="5dp"
+    app:cardBackgroundColor="#FF8D8D8D"
     app:cardCornerRadius="3dp"
     app:cardElevation="3dp">
 
@@ -32,6 +33,7 @@
             android:gravity="center"
             android:padding="10dp"
             android:text="TextView"
+            android:textColor="@android:color/white"
             android:textSize="24sp" />
     </LinearLayout>
 

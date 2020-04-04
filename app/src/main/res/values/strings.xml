@@ -4,7 +4,7 @@
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
     <string name="nav_header_title">Fox Mart</string>
-    <string name="nav_header_subtitle">Alwa7a@gmail.com</string>
+    <string name="nav_header_subtitle">libgdxengine@gmail.com</string>
     <string name="nav_header_desc">Navigation header</string>
     <string name="Products">Products</string>
 
@@ -102,4 +102,10 @@
     <string name="exit">exit</string>
     <string name="rate">rate</string>
     <string name="share_app">share app</string>
+    <string name="ONOFF">ON/OFF</string>
+    <string name="sorry_closed_now">Sorry we are closed now , your order will be delivered at</string>
+    <string name="Added">Added</string>
+    <string name="UBlocked">Sorry You are blocked from this app</string>
+    <string name="sorry_min_charge_is">\"Sorry ! minimum charge is \"</string>
+    <string name="add_to_cart">add_to_cart</string>
 </resources>
