@@ -1,5 +1,6 @@
 package com.devahmed.techx.onlineshop.Screens.Home;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -14,6 +15,7 @@ import com.devahmed.techx.onlineshop.Common.dependencyInjection.BaseFragment;
 import com.devahmed.techx.onlineshop.Models.ProductSubCategory;
 import com.devahmed.techx.onlineshop.R;
 import com.devahmed.techx.onlineshop.Screens.Home.UseCases.FetchCategoryUseCase;
+import com.devahmed.techx.onlineshop.Screens.SubCategories.SubCategoriesFragment;
 import com.devahmed.techx.onlineshop.Utils.UtilsDialog;
 import com.google.firebase.database.DatabaseError;
 
@@ -63,8 +65,8 @@ public class HomeFragment extends BaseFragment implements FetchCategoryUseCase.L
 
     @Override
     public void onOffersLongClick(ProductSubCategory subCategory) {
-//        String[] options = {"Edit", "Delete"};
-//        mvcImp.showOffersOptionsDialog("Choose Option" , options , subCategory);
+        String[] options = {"Edit", "Delete"};
+        mvcImp.showOffersOptionsDialog("Choose Option" , options , subCategory);
     }
 
     @Override
@@ -90,16 +92,15 @@ public class HomeFragment extends BaseFragment implements FetchCategoryUseCase.L
 
     @Override
     public void onCategoryClicked(String category) {
-        Bundle bundle = new Bundle();
-        bundle.putString("category" , category);
-        Navigation.findNavController(requireActivity() , R.id.nav_host_fragment).navigate(R.id.subCategoriesFragment , bundle);
-//        Navigator.instance(requireActivity()).navigate(R.id.subCategoriesFragment , bundle);
+        Intent intent = new Intent(requireActivity(), SubCategoriesFragment.class);
+        intent.putExtra("category" , category);
+        startActivity(intent);
     }
 
     @Override
     public void onCtegoryLongClick(Category category) {
-//        String[] options = {"Edit", "Delete"};
-//        mvcImp.showCategoriesOptionsDialog("Choose option" , options , category);
+        String[] options = {"Edit", "Delete"};
+        mvcImp.showCategoriesOptionsDialog("Choose option" , options , category);
     }
 
 

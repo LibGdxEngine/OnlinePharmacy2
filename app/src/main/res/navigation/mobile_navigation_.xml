@@ -17,9 +17,6 @@
             android:id="@+id/action_nav_home_to_nav_beauty"
             app:destination="@id/nav_products" />
         <action
-            android:id="@+id/action_nav_home_to_subCategoriesFragment"
-            app:destination="@id/subCategoriesFragment" />
-        <action
             android:id="@+id/action_nav_home_to_searchFragment"
             app:destination="@id/searchFragment" />
         <action
@@ -47,14 +44,6 @@
         android:name="com.devahmed.techx.onlineshop.Screens.AddProducts.AddProductFragment"
         android:label="@string/cart"
         tools:layout="@layout/fragment_add_product" />
-    <fragment
-        android:id="@+id/subCategoriesFragment"
-        android:name="com.devahmed.techx.onlineshop.Screens.SubCategories.SubCategoriesFragment"
-        tools:layout="@layout/subcategories_fragment" >
-        <action
-            android:id="@+id/action_subCategoriesFragment_to_nav_home"
-            app:destination="@id/nav_home" />
-    </fragment>
     <fragment
         android:id="@+id/searchFragment"
         android:name="com.devahmed.techx.onlineshop.Screens.Search.SearchFragment"
@@ -152,6 +141,10 @@
             android:id="@+id/action_onOffFragment_to_adminFragment"
             app:destination="@id/adminFragment" />
     </fragment>
+    <activity
+        android:id="@+id/subCategoriesFragment"
+        android:name="com.devahmed.techx.onlineshop.Screens.SubCategories.SubCategoriesFragment"
+        android:label="SubCategoriesFragment" />
 
 
 </navigation>

@@ -2,6 +2,7 @@ package com.devahmed.techx.onlineshop.Screens.LoginRegister.LoginRegisterUseCase
 
 import android.app.Activity;
 import android.util.Log;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 
@@ -50,7 +51,7 @@ public class LoginRegisterUseCase extends BaseObservableMvcView<LoginRegisterUse
             //     detect the incoming verification SMS and perform verification without
             //     user action.
             Log.d(TAG, "onVerificationCompleted:" + credential);
-
+            Toast.makeText(activity, "Here3", Toast.LENGTH_SHORT).show();
             signInWithPhoneAuthCredential(credential);
             notifyOnVerificationCompleted();
         }
@@ -70,9 +71,11 @@ public class LoginRegisterUseCase extends BaseObservableMvcView<LoginRegisterUse
                 // ...
                 notifyOnVerificationFailed(e.getMessage());
             }
-
+            notifyOnVerificationFailed(e.getMessage());
             // Show a message and update the UI
             // ...
+
+            Log.w(TAG, "onVerificationFailed " + e.getMessage(), e);
         }
 
         @Override
@@ -86,7 +89,7 @@ public class LoginRegisterUseCase extends BaseObservableMvcView<LoginRegisterUse
             // Save verification ID and resending token so we can use them later
             mVerificationId = verificationId;
             mResendToken = token;
-
+            Toast.makeText(activity, "Here5", Toast.LENGTH_SHORT).show();
             // ...
         }
     };
@@ -104,12 +107,14 @@ public class LoginRegisterUseCase extends BaseObservableMvcView<LoginRegisterUse
                 //add +2 key to entered phone number if it doesn't exist
                 phoneNumber = "+2" + phoneNumber;
             }
+            Toast.makeText(activity, "Here1", Toast.LENGTH_SHORT).show();
             getInstance().verifyPhoneNumber(
                     phoneNumber,        // Phone number to verify
                     60,                 // Timeout duration
                     TimeUnit.SECONDS,   // Unit of timeout
                     activity,               // Activity (for callback binding)
                     mCallbacks);        // OnVerificationStateChangedCallbacks
+            Toast.makeText(activity, "Here2", Toast.LENGTH_SHORT).show();
         }
 
     }

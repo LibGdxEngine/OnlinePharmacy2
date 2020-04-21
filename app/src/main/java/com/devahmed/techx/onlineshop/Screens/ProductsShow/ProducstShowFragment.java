@@ -7,6 +7,9 @@ import android.view.ViewGroup;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
 import androidx.navigation.Navigation;
 import com.devahmed.techx.onlineshop.Common.dependencyInjection.BaseFragment;
 import com.devahmed.techx.onlineshop.Models.Product;
@@ -14,35 +17,39 @@ import com.devahmed.techx.onlineshop.R;
 import com.devahmed.techx.onlineshop.Screens.ProductsShow.UseCases.FetchProductsUseCase;
 import com.devahmed.techx.onlineshop.Utils.UtilsDialog;
 import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.FirebaseDatabase;
 
 import java.util.List;
 
-public class ProducstShowFragment extends BaseFragment
+public class ProducstShowFragment extends AppCompatActivity
         implements ProductsShowMvc.Listener , FetchProductsUseCase.Listener{
 
     private ProductsShowMvcImp mvcImp;
     private FetchProductsUseCase fetchProductsUseCase;
     String subCategory;
-    public View onCreateView(@NonNull LayoutInflater inflater,
-                             ViewGroup container, Bundle savedInstanceState) {
 
-        mvcImp = getCompositionRoot().getMvcFactory().getShowProductsImp(null);
-        subCategory = getArguments().getString("subCategory");
-        fetchProductsUseCase = new FetchProductsUseCase(getCompositionRoot().ConnectToFirebase());
-        fetchProductsUseCase.getProductsOfCategory(subCategory , getContext());
+    @Override
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
 
-        return mvcImp.getRootView();
+        mvcImp = new ProductsShowMvcImp(getLayoutInflater() , null);
+        subCategory = getIntent().getExtras().getString("subCategory");//getArguments().getString("subCategory");
+        System.out.println("subcategory is " + subCategory);
+        fetchProductsUseCase = new FetchProductsUseCase(FirebaseDatabase.getInstance());
+        fetchProductsUseCase.getProductsOfCategory(subCategory , this);
+
+        setContentView( mvcImp.getRootView());
     }
 
     @Override
     public void onProductImageClicked(Product product) {
-        UtilsDialog dialog = new UtilsDialog(requireActivity());
+        UtilsDialog dialog = new UtilsDialog(this);
         dialog.showFullImageDialog(product.getImage());
     }
 
     @Override
     public void onAddToCartBtnClicked() {
-        Toast.makeText(requireContext(), getContext().getResources().getString(R.string.Added), Toast.LENGTH_SHORT).show();
+        Toast.makeText(this, this.getResources().getString(R.string.Added), Toast.LENGTH_SHORT).show();
     }
 
     @Override
@@ -50,15 +57,15 @@ public class ProducstShowFragment extends BaseFragment
         Bundle bundle = new Bundle();
         bundle.putString("FN" , "ADD_PRODUCT");
         bundle.putString("subCategory" , subCategory);
-        Navigation.findNavController(requireActivity() , R.id.nav_host_fragment).navigate(R.id.nav_add_item , bundle );
+        Navigation.findNavController(this , R.id.nav_host_fragment).navigate(R.id.nav_add_item , bundle );
 
-//        Navigator.instance(requireActivity()).navigate(R.id.nav_add_item, bundle);
+//        Navigator.instance(this).navigate(R.id.nav_add_item, bundle);
     }
 
     @Override
     public void onProductLongClicked(Product product) {
-//        String[] options = {"Edit", "Delete"};
-//        mvcImp.showProductsOptionsDialog("Choose Option" , options , product);
+        String[] options = {"Edit", "Delete"};
+        mvcImp.showProductsOptionsDialog("Choose Option" , options , product);
     }
 
     @Override
@@ -74,9 +81,9 @@ public class ProducstShowFragment extends BaseFragment
         bundle.putInt("productCount" , product.getMaxCount());
         bundle.putInt("productPoints" , product.getPoints());
         bundle.putString("productBranch" , product.getBranch());
-        Navigation.findNavController(requireActivity() , R.id.nav_host_fragment).navigate(R.id.nav_add_item , bundle );
+        Navigation.findNavController(this , R.id.nav_host_fragment).navigate(R.id.nav_add_item , bundle );
 
-//        Navigator.instance(requireActivity()).navigate(R.id.nav_add_item, bundle);
+//        Navigator.instance(this).navigate(R.id.nav_add_item, bundle);
     }
 
     @Override
@@ -92,7 +99,7 @@ public class ProducstShowFragment extends BaseFragment
 
     @Override
     public void onProductsDataCancel(DatabaseError error) {
-        Toast.makeText(requireActivity(), "" + error.getMessage(), Toast.LENGTH_SHORT).show();
+        Toast.makeText(this, "" + error.getMessage(), Toast.LENGTH_SHORT).show();
     }
 
 

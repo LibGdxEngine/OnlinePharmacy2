@@ -47,7 +47,7 @@ public class LoginActivity extends AppCompatActivity implements LoginActivityMvc
     public void onSubmitBtnCLicked() {
         mvcImp.showProgressbar();
         loginRegisterUseCase.registerNewUser(mvcImp.getRegisterPhoneNumber());
-
+        Toast.makeText(this, "Logging", Toast.LENGTH_SHORT).show();
     }
 
     @Override
@@ -76,6 +76,7 @@ public class LoginActivity extends AppCompatActivity implements LoginActivityMvc
     @Override
     public void onVerificationCompleted() {
         mvcImp.hideProgressbar();
+        Toast.makeText(this, "Logging", Toast.LENGTH_SHORT).show();
     }
 
     @Override

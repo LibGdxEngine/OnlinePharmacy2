@@ -83,6 +83,7 @@ public class CartFragment extends Fragment implements CartMvc.Listener, FetchCar
         bundle.putString("FN" , "comingFromCart");
         bundle.putDouble("totalPrice" , mvcImp.getTotalPrice());
         bundle.putDouble("deliveryCost" , mvcImp.getDeliveryCost());
+
         bundle.putStringArrayList("productsIds" , mvcImp.getProductsIds());
         bundle.putIntegerArrayList("productsCounts" , mvcImp.getProductsCounts());
         bundle.putInt("totalEarnedPoints",totalEarnedPoints);

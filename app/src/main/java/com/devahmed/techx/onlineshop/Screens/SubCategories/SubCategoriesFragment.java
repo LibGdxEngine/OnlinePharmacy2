@@ -1,45 +1,49 @@
 package com.devahmed.techx.onlineshop.Screens.SubCategories;
 
+
+import android.content.Intent;
 import android.os.Bundle;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.Toast;
-import androidx.annotation.NonNull;
+import android.widget.ViewAnimator;
+
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.navigation.Navigation;
-import com.devahmed.techx.onlineshop.Common.dependencyInjection.BaseFragment;
 import com.devahmed.techx.onlineshop.Models.SubCategory;
 import com.devahmed.techx.onlineshop.R;
+import com.devahmed.techx.onlineshop.Screens.ProductsShow.ProducstShowFragment;
 import com.devahmed.techx.onlineshop.Screens.SubCategories.UseCase.FetchSubCategories;
 import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.FirebaseDatabase;
+
 import java.util.List;
 
-public class SubCategoriesFragment extends BaseFragment implements FetchSubCategories.Listener, SubCategoriesMvc.Listener {
+public class SubCategoriesFragment extends AppCompatActivity implements FetchSubCategories.Listener, SubCategoriesMvc.Listener {
 
     SubCategoryMvcImp mvcImp;
     FetchSubCategories useCase;
     String category;
-    @Nullable
+
     @Override
-    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        mvcImp = getCompositionRoot().getMvcFactory().getSubCategoryMvcImp(null);
-        category = getArguments().getString("category");
-        useCase = new FetchSubCategories(getCompositionRoot().ConnectToFirebase());
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        mvcImp = new SubCategoryMvcImp(getLayoutInflater() , null);
+
+        category = getIntent().getExtras().getString("category");
+        System.out.println("category is " + category);
+        useCase = new FetchSubCategories(FirebaseDatabase.getInstance());
         useCase.getSubCategories(category);
-
-        return mvcImp.getRootView();
+        setContentView(mvcImp.getRootView());
     }
-
-
 
     @Override
     public void onSubCategoryClicked(String title) {
         Bundle bundle = new Bundle();
         bundle.putString("subCategory" , title);
-//        Toast.makeText(requireActivity(), ""+ title, Toast.LENGTH_SHORT).show();
-        Navigation.findNavController(requireActivity() , R.id.nav_host_fragment).navigate(R.id.nav_products , bundle);
-//        Navigator.instance(requireActivity()).navigate(R.id.nav_products, bundle);
+        Intent intent = new Intent(getApplicationContext(), ProducstShowFragment.class);
+        intent.putExtra("subCategory" , title);
+        startActivity(intent);
     }
 
 
@@ -48,14 +52,13 @@ public class SubCategoriesFragment extends BaseFragment implements FetchSubCateg
         Bundle bundle = new Bundle();
         bundle.putString("FN" , "ADD_SUBCATEGORY");
         bundle.putString("category" , category);
-        Navigation.findNavController(requireActivity() , R.id.nav_host_fragment).navigate(R.id.nav_add_item , bundle);
-//        Navigator.instance(requireActivity()).navigate(R.id.nav_add_item , bundle);
+        Navigation.findNavController(this , R.id.nav_host_fragment).navigate(R.id.nav_add_item , bundle);
     }
 
     @Override
     public void onSubCategoryLongClicked(SubCategory subCategory) {
-//        String[] options = {"Edit", "Delete"};
-//        mvcImp.showCategoriesOptionsDialog("Choose option" , options , subCategory);
+        String[] options = {"Edit", "Delete"};
+        mvcImp.showCategoriesOptionsDialog("Choose option" , options , subCategory);
     }
 
     @Override
@@ -67,25 +70,26 @@ public class SubCategoriesFragment extends BaseFragment implements FetchSubCateg
         bundle.putString("subCategoryImage" , subCategory.getImage());
         bundle.putString("subCategoryCategory" , subCategory.getCategory());
         bundle.putBoolean("subCategoryInOffer" , subCategory.isInOffer());
-        Navigation.findNavController(requireActivity() , R.id.nav_host_fragment).navigate(R.id.nav_add_item ,bundle);
-        //Navigator.instance(requireActivity()).navigate(R.id.nav_add_item,  bundle);
+        Navigation.findNavController(this , R.id.nav_host_fragment).navigate(R.id.nav_add_item ,bundle);
+        //Navigator.instance(this).navigate(R.id.nav_add_item,  bundle);
     }
 
     @Override
     public void onChooseSubCategoryDelete(SubCategory category) {
         useCase.deleteCategory(category.getId());
-        Toast.makeText(requireContext(), "Deleted", Toast.LENGTH_SHORT).show();
+        Toast.makeText(this, "Deleted", Toast.LENGTH_SHORT).show();
     }
 
     @Override
     public void onSubCategorySuccess(List<SubCategory> subCategories) {
         mvcImp.bindSubCategoriesData(subCategories);
         mvcImp.hideProgressbar();
+
     }
 
     @Override
     public void onSubCategoryCanceled(DatabaseError error) {
-        Toast.makeText(requireActivity(), "SubCategories Error  " + error.getMessage(), Toast.LENGTH_SHORT).show();
+        Toast.makeText(this, "SubCategories Error  " + error.getMessage(), Toast.LENGTH_SHORT).show();
     }
 
     @Override

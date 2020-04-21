@@ -138,7 +138,7 @@ public class AccountMvcImp extends BaseObservableMvcView<AccountMvc.Listener> im
                         orderAtString = hourOfDay + ":" + minute;
                         selectedRadioBtn.setText(orderAtString);
                     }
-                }, mHour + 2 , mMinute, false);
+                }, mHour + 2 , mMinute, true);
         timePickerDialog.show();
     }
 

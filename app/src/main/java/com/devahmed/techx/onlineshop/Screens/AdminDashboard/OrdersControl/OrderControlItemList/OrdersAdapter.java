@@ -13,6 +13,7 @@ import com.devahmed.techx.onlineshop.Screens.UserAccount.UseCases.FetchUserInfoF
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.FirebaseDatabase;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class OrdersAdapter extends RecyclerView.Adapter<OrdersAdapter.ViewHolder> implements OrderListItemViewMvc.Listener, FetchUserInfoFromFirebaseUseCase.Listener {
@@ -45,6 +46,7 @@ public class OrdersAdapter extends RecyclerView.Adapter<OrdersAdapter.ViewHolder
         this.mListener = listener;
         userInfoFromFirebaseUseCase = new FetchUserInfoFromFirebaseUseCase(FirebaseDatabase.getInstance());
         userInfoFromFirebaseUseCase.registerListener(this);
+        userList = new ArrayList<>();
         userInfoFromFirebaseUseCase.getAllUsers();
         SharedPreferences sharedPreferences = context.getSharedPreferences("userBranch" , 0);
         this.adminBranch = sharedPreferences.getString("userBranch" , "-M277YZ-fwm7UIQrJZQ6");

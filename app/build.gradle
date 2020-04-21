@@ -3,12 +3,20 @@ apply plugin: 'com.google.gms.google-services'
 apply plugin: 'com.google.android.gms.strict-version-matcher-plugin'
 
 android {
+    signingConfigs {
+        release {
+            storeFile file('/home/libgdx/AndroidStudioProjects/FoxMart/foxmart.jks')
+            storePassword 'ahmed1998'
+            keyAlias = 'Key0'
+            keyPassword 'ahmed1998'
+        }
+    }
     compileSdkVersion 28
     defaultConfig {
         applicationId "com.devahmed.techx.onlineshop"
         minSdkVersion 21
         targetSdkVersion 28
-        versionCode 3
+        versionCode 4
         versionName "1.0"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         vectorDrawables.useSupportLibrary = true
@@ -17,6 +25,11 @@ android {
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+            signingConfig signingConfigs.release
+        }
+        debug {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
 }

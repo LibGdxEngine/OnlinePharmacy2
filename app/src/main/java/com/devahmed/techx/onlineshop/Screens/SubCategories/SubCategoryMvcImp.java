@@ -6,6 +6,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ProgressBar;
+import android.widget.Toast;
 
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -28,7 +29,8 @@ public class SubCategoryMvcImp extends BaseObservableMvcView<SubCategoriesMvc.Li
     private ProgressBar progressBar;
 
     public SubCategoryMvcImp(LayoutInflater inflater , ViewGroup parent) {
-        setRootView(inflater.inflate(R.layout.subcategories_fragment , parent , false));
+        View root = inflater.inflate(R.layout.subcategories_fragment , parent , false);
+        setRootView(root);
         progressBar = findViewById(R.id.progressBar);
         addSubCategoryBtn = findViewById(R.id.addSubCategoryBtn);
 

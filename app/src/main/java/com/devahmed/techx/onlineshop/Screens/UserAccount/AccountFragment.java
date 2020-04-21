@@ -142,9 +142,9 @@ public class AccountFragment extends Fragment implements AccountMvc.Listener, Ad
         user.setGpsAddress(this.userLocation);
         //after that add new order with this data
         Order order = new Order();
-        order.setTotalPrice(getArguments().getDouble("totalPrice"));
+        order.setTotalPrice(getArguments().getDouble("totalPrice") - getArguments().getDouble("deliveryCost"));
         order.setUserId(FirebaseAuth.getInstance().getCurrentUser().getUid());
-        order.setDeliveryCost(getArguments().getInt("deliveryCost"));
+        order.setDeliveryCost( (int) getArguments().getDouble("deliveryCost"));
         order.setDiscount(0);
         order.setOrderAtTime(mvcImp.getOrderAtTime());
         List<String> productsIds = getArguments().getStringArrayList("productsIds");

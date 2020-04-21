@@ -139,6 +139,8 @@ public class OrderDetailsMvcImp extends BaseObservableMvcView<OrderDetailsMvc.Li
             inprogrressImageView.setBorderColor(getContext().getResources().getColor(R.color.colorPrimary));
         }else if(orderState.equals("Delivering")){
             orderState = getContext().getString(R.string.delivering);
+            cancelOrderBtn.setVisibility(View.INVISIBLE);
+            editOrder.setVisibility(View.INVISIBLE);
             deliveringImageView.setImageResource(R.drawable.ic_delivering_24dp);
             inprogrressImageView.setImageResource(R.drawable.ic_delivering_24dp);
             deliveringImageView.setBorderColor(getContext().getResources().getColor(R.color.colorPrimary));
@@ -146,6 +148,8 @@ public class OrderDetailsMvcImp extends BaseObservableMvcView<OrderDetailsMvc.Li
             line1.setBackgroundColor(getContext().getResources().getColor(R.color.colorPrimary));
         }else if(orderState.equals("Done")){
             orderState = getContext().getString(R.string.done);
+            cancelOrderBtn.setVisibility(View.INVISIBLE);
+            editOrder.setVisibility(View.INVISIBLE);
             deliveringImageView.setBorderColor(getContext().getResources().getColor(R.color.colorPrimary));
             inprogrressImageView.setBorderColor(getContext().getResources().getColor(R.color.colorPrimary));
             deliveredImage.setBorderColor(getContext().getResources().getColor(R.color.colorPrimary));

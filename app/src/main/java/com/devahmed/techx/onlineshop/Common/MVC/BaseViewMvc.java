@@ -9,7 +9,7 @@ public abstract class BaseViewMvc implements MvcView {
 
     @Override
     public View getRootView() {
-        return mRootView;
+        return this.mRootView;
     }
 
     protected <T extends View> T findViewById(int id) {

@@ -17,6 +17,8 @@
         android:theme="@style/AppTheme">
         <activity android:name="com.devahmed.techx.onlineshop.Screens.HowDidYouHearAboutUs.HowDidYouHearAboutUsActivity"></activity>
         <activity android:name="com.devahmed.techx.onlineshop.Screens.LocationAtFirstTime.LocationAtFirstTime" />
+        <activity android:name=".Screens.SubCategories.SubCategoriesFragment" />
+        <activity android:name=".Screens.ProductsShow.ProducstShowFragment"/>
         <activity android:name="com.devahmed.techx.onlineshop.Screens.Splash.SplashActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
