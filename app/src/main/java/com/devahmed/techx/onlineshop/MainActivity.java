@@ -126,10 +126,10 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 navController.navigate(R.id.searchFragment);
                 break;
             }
-            case R.id.adminDashboard:{
-                navController.navigate(R.id.adminFragment);
-                break;
-            }
+//            case R.id.adminDashboard:{
+//                navController.navigate(R.id.adminFragment);
+//                break;
+//            }
             case R.id.nav_cart:{
                 navController.navigate(R.id.cartFragment);
                 break;
