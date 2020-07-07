@@ -6,25 +6,50 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <Button
-        android:id="@+id/callUserBtnJustForAdmin"
+    <LinearLayout
+        android:id="@+id/adminControls"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="8dp"
-        android:background="@drawable/add_to_cart_btn_background"
-        android:drawableRight="@drawable/ic_call_white_24dp"
-        android:paddingLeft="25dp"
-        android:paddingRight="25dp"
-        android:text="Call user"
-        android:textColor="@color/otherColor"
-        android:visibility="gone"
+        android:layout_marginBottom="8dp"
+        android:elevation="100dp"
+        android:orientation="horizontal"
+        android:visibility="visible"
         app:layout_constraintBottom_toBottomOf="@+id/scrollView2"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/scrollView2"
-        app:layout_constraintVertical_bias="1.0" />
+        app:layout_constraintStart_toStartOf="parent">
+
+        <Button
+            android:id="@+id/showUserLocationBtn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="8dp"
+            android:layout_weight="1"
+            android:background="@drawable/add_to_cart_btn_background"
+            android:drawableRight="@drawable/ic_baseline_location_on_24"
+            android:paddingLeft="25dp"
+            android:paddingRight="25dp"
+            android:text="Location"
+            android:textColor="@color/otherColor"
+            android:visibility="visible" />
+
+        <Button
+            android:id="@+id/callUserBtnJustForAdmin"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="8dp"
+            android:layout_weight="1"
+            android:background="@drawable/add_to_cart_btn_background"
+            android:drawableRight="@drawable/ic_call_white_24dp"
+            android:paddingLeft="25dp"
+            android:paddingRight="25dp"
+            android:text="Call user"
+            android:textColor="@color/otherColor"
+            android:visibility="visible" />
+    </LinearLayout>
 
     <ProgressBar
         android:id="@+id/progressBar"

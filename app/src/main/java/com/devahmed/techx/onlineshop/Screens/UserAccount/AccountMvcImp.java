@@ -115,7 +115,7 @@ public class AccountMvcImp extends BaseObservableMvcView<AccountMvc.Listener> im
         final Calendar c = Calendar.getInstance();
         final int mHour = c.get(Calendar.HOUR_OF_DAY);
         int mMinute = c.get(Calendar.MINUTE);
-        System.out.println("mHour" + mHour);
+
         // Launch Time Picker Dialog
         TimePickerDialog timePickerDialog = new TimePickerDialog(getContext(),
                 new TimePickerDialog.OnTimeSetListener() {
@@ -123,7 +123,19 @@ public class AccountMvcImp extends BaseObservableMvcView<AccountMvc.Listener> im
                     @Override
                     public void onTimeSet(TimePicker view, int hourOfDay,
                                           int minute) {
-                        System.out.println("hourOfDay" + hourOfDay);
+                        //time should not be after mid night
+                        if(mHour >= 0 && mHour < 8){
+                            UtilsDialog dialog = new UtilsDialog(getContext());
+                            dialog.showTextMessage(getContext().getResources().getString(R.string.time_alert2));
+                            dialog.addCancelListener(new DialogInterface.OnCancelListener() {
+                                @Override
+                                public void onCancel(DialogInterface dialog) {
+                                    showTimePicker();
+                                }
+                            });
+                            return;
+                        }
+                        //time should be two hours from current time
                         if(hourOfDay - mHour < 2){
                             UtilsDialog dialog = new UtilsDialog(getContext());
                             dialog.showTextMessage(getContext().getResources().getString(R.string.time_alert));

@@ -25,6 +25,7 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.FirebaseDatabase;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 
 public class OrderDetailsFragment extends Fragment implements OrderDetailsMvc.Listener
         , FetchProductsUseCase.Listener, FetchUserInfoFromFirebaseUseCase.Listener, AddOrdersUseCase.Listener {
@@ -92,6 +93,14 @@ public class OrderDetailsFragment extends Fragment implements OrderDetailsMvc.Li
     public void onCallUserBtnClicked(User user) {
         String phone = user.getPhone();
         Intent intent = new Intent(Intent.ACTION_DIAL, Uri.fromParts("tel", phone, null));
+        startActivity(intent);
+    }
+
+    @Override
+    public void onShowLocationBtnClicked(User user) {
+        Toast.makeText(getActivity(), "x : " + user.getxPos() + " Y : " + user.getyPos(), Toast.LENGTH_SHORT).show();
+        String uri = String.format(Locale.ENGLISH, "geo:%f,%f", user.getxPos(), user.getyPos());
+        Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(uri));
         startActivity(intent);
     }
 

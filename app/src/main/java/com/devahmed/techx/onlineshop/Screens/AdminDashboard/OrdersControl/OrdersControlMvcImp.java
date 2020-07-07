@@ -71,7 +71,7 @@ public class OrdersControlMvcImp extends BaseObservableMvcView<OrdersControlMvc.
     }
 
     @Override
-    public void onShareBtnClicked(Order order) {
+    public void onLocationBtnClicked(Order order) {
         for(Listener listener : getmListeners()){
             listener.onShareBtnClicked(order);
         }

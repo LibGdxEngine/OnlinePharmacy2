@@ -19,6 +19,7 @@
         <activity android:name="com.devahmed.techx.onlineshop.Screens.LocationAtFirstTime.LocationAtFirstTime" />
         <activity android:name=".Screens.SubCategories.SubCategoriesFragment" />
         <activity android:name=".Screens.ProductsShow.ProducstShowFragment"/>
+        <activity android:name=".Screens.AddProducts.AddProductActivity"/>
         <activity android:name="com.devahmed.techx.onlineshop.Screens.Splash.SplashActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

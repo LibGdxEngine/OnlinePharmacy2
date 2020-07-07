@@ -1,5 +1,5 @@
 <resources>
-    <string name="admin">true</string>
+    <string name="admin">false</string>
     <string name="app_name"> \tFox Mart\t</string>
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
@@ -109,4 +109,5 @@
     <string name="UBlocked">انت محظور من استخدام هذا التطبيق</string>
     <string name="sorry_min_charge_is">\"عذرا . أقل قيمة للشراء هي \"</string>
     <string name="add_to_cart">اضف الى العربة</string>
+    <string name="time_alert2">لا يمكنك الطلب في هذه الساعة , حاول لاحقا</string>
 </resources>

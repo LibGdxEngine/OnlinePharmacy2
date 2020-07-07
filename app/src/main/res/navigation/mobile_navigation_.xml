@@ -41,7 +41,7 @@
 
     <fragment
         android:id="@+id/nav_add_item"
-        android:name="com.devahmed.techx.onlineshop.Screens.AddProducts.AddProductFragment"
+        android:name="com.devahmed.techx.onlineshop.Screens.AddProducts.AddProductActivity"
         android:label="@string/cart"
         tools:layout="@layout/fragment_add_product" />
     <fragment

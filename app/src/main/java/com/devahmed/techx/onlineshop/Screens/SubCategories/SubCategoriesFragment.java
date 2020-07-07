@@ -12,6 +12,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.navigation.Navigation;
 import com.devahmed.techx.onlineshop.Models.SubCategory;
 import com.devahmed.techx.onlineshop.R;
+import com.devahmed.techx.onlineshop.Screens.AddProducts.AddProductActivity;
 import com.devahmed.techx.onlineshop.Screens.ProductsShow.ProducstShowFragment;
 import com.devahmed.techx.onlineshop.Screens.SubCategories.UseCase.FetchSubCategories;
 import com.google.firebase.database.DatabaseError;
@@ -49,29 +50,40 @@ public class SubCategoriesFragment extends AppCompatActivity implements FetchSub
 
     @Override
     public void onAddSubCategoryBtnClicked() {
-        Bundle bundle = new Bundle();
-        bundle.putString("FN" , "ADD_SUBCATEGORY");
-        bundle.putString("category" , category);
-        Navigation.findNavController(this , R.id.nav_host_fragment).navigate(R.id.nav_add_item , bundle);
+//        Bundle bundle = new Bundle();
+//        bundle.putString("FN" , "ADD_SUBCATEGORY");
+//        bundle.putString("category" , category);
+//        Navigation.findNavController(this , R.id.nav_host_fragment).navigate(R.id.nav_add_item , bundle);
+        Intent intent = new Intent(getApplicationContext() , AddProductActivity.class);
+        intent.putExtra("FN" , "ADD_SUBCATEGORY");
+        intent.putExtra("category" , category);
+        startActivity(intent);
     }
 
     @Override
     public void onSubCategoryLongClicked(SubCategory subCategory) {
-        String[] options = {"Edit", "Delete"};
-        mvcImp.showCategoriesOptionsDialog("Choose option" , options , subCategory);
+//        String[] options = {"Edit", "Delete"};
+//        mvcImp.showCategoriesOptionsDialog("Choose option" , options , subCategory);
     }
 
     @Override
     public void onChooseSubCategoryEdit(SubCategory subCategory) {
-        Bundle bundle = new Bundle();
-        bundle.putString("FN" , "EDIT_SUBCATEGORY");
-        bundle.putString("subCategoryId" , subCategory.getId());
-        bundle.putString("subCategoryTitle" , subCategory.getTitle());
-        bundle.putString("subCategoryImage" , subCategory.getImage());
-        bundle.putString("subCategoryCategory" , subCategory.getCategory());
-        bundle.putBoolean("subCategoryInOffer" , subCategory.isInOffer());
-        Navigation.findNavController(this , R.id.nav_host_fragment).navigate(R.id.nav_add_item ,bundle);
-        //Navigator.instance(this).navigate(R.id.nav_add_item,  bundle);
+//        Bundle bundle = new Bundle();
+//        bundle.putString("FN" , "EDIT_SUBCATEGORY");
+//        bundle.putString("subCategoryId" , subCategory.getId());
+//        bundle.putString("subCategoryTitle" , subCategory.getTitle());
+//        bundle.putString("subCategoryImage" , subCategory.getImage());
+//        bundle.putString("subCategoryCategory" , subCategory.getCategory());
+//        bundle.putBoolean("subCategoryInOffer" , subCategory.isInOffer());
+//        Navigation.findNavController(this , R.id.nav_host_fragment).navigate(R.id.nav_add_item ,bundle);
+        Intent intent = new Intent(SubCategoriesFragment.this, AddProductActivity.class);
+        intent.putExtra("FN" , "EDIT_SUBCATEGORY");
+        intent.putExtra("subCategoryId" , subCategory.getId());
+        intent.putExtra("subCategoryTitle" , subCategory.getTitle());
+        intent.putExtra("subCategoryImage" , subCategory.getImage());
+        intent.putExtra("subCategoryCategory" , subCategory.getCategory());
+        intent.putExtra("subCategoryInOffer" , subCategory.isInOffer());
+        startActivity(intent);
     }
 
     @Override

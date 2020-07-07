@@ -45,7 +45,7 @@ public class OrderListItemViewMvcImp extends BaseObservableMvcView<OrderListItem
             @Override
             public void onClick(View v) {
                 for(Listener listener : getmListeners()){
-                    listener.onShareBtnClicked(order);
+                    listener.onLocationBtnClicked(order);
                 }
             }
         });
@@ -56,7 +56,7 @@ public class OrderListItemViewMvcImp extends BaseObservableMvcView<OrderListItem
         orderDate = findViewById(R.id.orderDateText);
         orderStatusBtn = findViewById(R.id.statusBtn);
         orderShowBtn = findViewById(R.id.showOrderBtn);
-        orderShareBtn = findViewById(R.id.ShareOrderBtn);
+        orderShareBtn = findViewById(R.id.locationOrderBtn);
     }
 
     @Override

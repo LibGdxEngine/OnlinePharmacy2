@@ -1,5 +1,6 @@
 package com.devahmed.techx.onlineshop.Screens.ProductsShow;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -14,7 +15,9 @@ import androidx.navigation.Navigation;
 import com.devahmed.techx.onlineshop.Common.dependencyInjection.BaseFragment;
 import com.devahmed.techx.onlineshop.Models.Product;
 import com.devahmed.techx.onlineshop.R;
+import com.devahmed.techx.onlineshop.Screens.AddProducts.AddProductActivity;
 import com.devahmed.techx.onlineshop.Screens.ProductsShow.UseCases.FetchProductsUseCase;
+import com.devahmed.techx.onlineshop.Screens.SubCategories.SubCategoriesFragment;
 import com.devahmed.techx.onlineshop.Utils.UtilsDialog;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.FirebaseDatabase;
@@ -54,36 +57,51 @@ public class ProducstShowFragment extends AppCompatActivity
 
     @Override
     public void onAddNewProductBtnClicked() {
-        Bundle bundle = new Bundle();
-        bundle.putString("FN" , "ADD_PRODUCT");
-        bundle.putString("subCategory" , subCategory);
-        Navigation.findNavController(this , R.id.nav_host_fragment).navigate(R.id.nav_add_item , bundle );
+//        Bundle bundle = new Bundle();
+//        bundle.putString("FN" , "ADD_PRODUCT");
+//        bundle.putString("subCategory" , subCategory);
+//        Navigation.findNavController(this , R.id.nav_host_fragment).navigate(R.id.nav_add_item , bundle );
 
+        Intent intent = new Intent(getApplicationContext() , AddProductActivity.class);
+        intent.putExtra("FN" , "ADD_PRODUCT");
+        intent.putExtra("subCategory" , subCategory);
+        startActivity(intent);
 //        Navigator.instance(this).navigate(R.id.nav_add_item, bundle);
     }
 
     @Override
     public void onProductLongClicked(Product product) {
-        String[] options = {"Edit", "Delete"};
-        mvcImp.showProductsOptionsDialog("Choose Option" , options , product);
+//        String[] options = {"Edit", "Delete"};
+//        mvcImp.showProductsOptionsDialog("Choose Option" , options , product);
     }
 
     @Override
     public void onChooseProductEdit(Product product) {
-        Bundle bundle = new Bundle();
-        bundle.putString("FN" , "EDIT_PRODUCT");
-        bundle.putString("productId" , product.getId());
-        bundle.putString("productImage" , product.getImage());
-        bundle.putString("productTitle" , product.getTitle());
-        bundle.putDouble("productPrice" , product.getPrice());
-        bundle.putString("productSubCategory" , product.getSubCategory());
-        bundle.putString("productTimeStamp" , product.getTimeStamp().toString());
-        bundle.putInt("productCount" , product.getMaxCount());
-        bundle.putInt("productPoints" , product.getPoints());
-        bundle.putString("productBranch" , product.getBranch());
-        Navigation.findNavController(this , R.id.nav_host_fragment).navigate(R.id.nav_add_item , bundle );
+//        Bundle bundle = new Bundle();
+//        bundle.putString("FN" , "EDIT_PRODUCT");
+//        bundle.putString("productId" , product.getId());
+//        bundle.putString("productImage" , product.getImage());
+//        bundle.putString("productTitle" , product.getTitle());
+//        bundle.putDouble("productPrice" , product.getPrice());
+//        bundle.putString("productSubCategory" , product.getSubCategory());
+//        bundle.putString("productTimeStamp" , product.getTimeStamp().toString());
+//        bundle.putInt("productCount" , product.getMaxCount());
+//        bundle.putInt("productPoints" , product.getPoints());
+//        bundle.putString("productBranch" , product.getBranch());
+//        Navigation.findNavController(this , R.id.nav_host_fragment).navigate(R.id.nav_add_item , bundle );
 
-//        Navigator.instance(this).navigate(R.id.nav_add_item, bundle);
+        Intent intent = new Intent(ProducstShowFragment.this, AddProductActivity.class);
+        intent.putExtra("FN" , "EDIT_PRODUCT");
+        intent.putExtra("productId" , product.getId());
+        intent.putExtra("productImage" , product.getImage());
+        intent.putExtra("productTitle" , product.getTitle());
+        intent.putExtra("productPrice" , product.getPrice());
+        intent.putExtra("productSubCategory" , product.getSubCategory());
+        intent.putExtra("productTimeStamp" , product.getTimeStamp().toString());
+        intent.putExtra("productCount" , product.getMaxCount());
+        intent.putExtra("productPoints" , product.getPoints());
+        intent.putExtra("productBranch" , product.getBranch());
+        startActivity(intent);
     }
 
     @Override

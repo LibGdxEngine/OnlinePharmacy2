@@ -4,6 +4,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
@@ -28,13 +29,14 @@ public class OrderDetailsMvcImp extends BaseObservableMvcView<OrderDetailsMvc.Li
     OrderedProducstAdapter adapter;
     CircleImageView inprogrressImageView , deliveringImageView , deliveredImage;
     View line1 , line2;
+    LinearLayout adminControls;
     TextView totalItemsText, itemsPriceText , deliveryCostPrice
             , totalPriceText , areaText , streetText
             , buildingText , uniqueSignText , yourOrderTextView , yourAddressTextView;
     TextView orderStateText1 ,orderStateText2 , orderStateText3 ,thankYouTextView
              , ItemsCountTextView , ItemsPriceTextView , deliveryCostTextView , totalPriceTextView;
     ProgressBar progressBar;
-    Button callUser , cancelOrderBtn , editOrder;
+    Button callUser ,showUserLocation, cancelOrderBtn , editOrder;
     User user;
 
 
@@ -62,8 +64,14 @@ public class OrderDetailsMvcImp extends BaseObservableMvcView<OrderDetailsMvc.Li
         editOrder.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
+            }
+        });
+        showUserLocation.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
                 for(Listener listener : getmListeners()){
-                    listener.onEditOrderBtnClicked();
+                    listener.onShowLocationBtnClicked(user);
                 }
             }
         });
@@ -75,6 +83,8 @@ public class OrderDetailsMvcImp extends BaseObservableMvcView<OrderDetailsMvc.Li
         totalItemsText = findViewById(R.id.totalItemsText);
         itemsPriceText = findViewById(R.id.itemsPriceText);
         cancelOrderBtn = findViewById(R.id.cancelOrderBtn);
+        showUserLocation = findViewById(R.id.showUserLocationBtn);
+        adminControls = findViewById(R.id.adminControls);
         orderStateText1 = findViewById(R.id.orderStateText1);
         orderStateText2 = findViewById(R.id.orderStateText2);
         orderStateText3 = findViewById(R.id.orderStateText3);
@@ -139,8 +149,8 @@ public class OrderDetailsMvcImp extends BaseObservableMvcView<OrderDetailsMvc.Li
             inprogrressImageView.setBorderColor(getContext().getResources().getColor(R.color.colorPrimary));
         }else if(orderState.equals("Delivering")){
             orderState = getContext().getString(R.string.delivering);
-            cancelOrderBtn.setVisibility(View.INVISIBLE);
-            editOrder.setVisibility(View.INVISIBLE);
+            cancelOrderBtn.setVisibility(View.GONE);
+            editOrder.setVisibility(View.GONE);
             deliveringImageView.setImageResource(R.drawable.ic_delivering_24dp);
             inprogrressImageView.setImageResource(R.drawable.ic_delivering_24dp);
             deliveringImageView.setBorderColor(getContext().getResources().getColor(R.color.colorPrimary));
@@ -148,8 +158,8 @@ public class OrderDetailsMvcImp extends BaseObservableMvcView<OrderDetailsMvc.Li
             line1.setBackgroundColor(getContext().getResources().getColor(R.color.colorPrimary));
         }else if(orderState.equals("Done")){
             orderState = getContext().getString(R.string.done);
-            cancelOrderBtn.setVisibility(View.INVISIBLE);
-            editOrder.setVisibility(View.INVISIBLE);
+            cancelOrderBtn.setVisibility(View.GONE);
+            editOrder.setVisibility(View.GONE);
             deliveringImageView.setBorderColor(getContext().getResources().getColor(R.color.colorPrimary));
             inprogrressImageView.setBorderColor(getContext().getResources().getColor(R.color.colorPrimary));
             deliveredImage.setBorderColor(getContext().getResources().getColor(R.color.colorPrimary));
@@ -178,9 +188,11 @@ public class OrderDetailsMvcImp extends BaseObservableMvcView<OrderDetailsMvc.Li
     @Override
     public void showAdminControls() {
         //show call user btn
+        adminControls.setVisibility(View.VISIBLE);
+        showUserLocation.setVisibility(View.VISIBLE);
         callUser.setVisibility(View.VISIBLE);
-        cancelOrderBtn.setVisibility(View.INVISIBLE);
-        editOrder.setVisibility(View.INVISIBLE);
+        cancelOrderBtn.setVisibility(View.GONE);
+        editOrder.setVisibility(View.GONE);
     }
 
 

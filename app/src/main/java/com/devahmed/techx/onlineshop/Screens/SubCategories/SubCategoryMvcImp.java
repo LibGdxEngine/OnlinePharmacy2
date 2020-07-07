@@ -20,7 +20,7 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import java.util.ArrayList;
 import java.util.List;
 
-public class SubCategoryMvcImp extends BaseObservableMvcView<SubCategoriesMvc.Listener> implements SubCategoriesMvc {
+public class    SubCategoryMvcImp extends BaseObservableMvcView<SubCategoriesMvc.Listener> implements SubCategoriesMvc {
 
     private RecyclerView subRecyclerView;
     private List<SubCategory>  subCategories;

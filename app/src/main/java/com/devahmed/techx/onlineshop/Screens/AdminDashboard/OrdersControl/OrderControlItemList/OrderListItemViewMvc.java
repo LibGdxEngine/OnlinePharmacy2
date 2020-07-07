@@ -6,7 +6,7 @@ public interface OrderListItemViewMvc {
     interface Listener{
         void onItemClicked(Order order);
         void onShowBtnClicked(Order order);
-        void onShareBtnClicked(Order order);
+        void onLocationBtnClicked(Order order);
         void onStatusBtnClicked(Order order);
     }
 

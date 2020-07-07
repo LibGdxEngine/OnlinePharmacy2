@@ -1,6 +1,7 @@
 package com.devahmed.techx.onlineshop.Screens.AddProducts.AddProductUseCase;
 
 import android.Manifest;
+import android.app.Activity;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
@@ -19,7 +20,7 @@ import java.io.IOException;
 
 public class GetImageUseCase {
 
-    private Fragment context;
+    private Activity context;
     public int CameraREQUEST_CODE = 1;
     public int GalleryREQUEST_CODE = 2;
     private static final int REQUEST_CODE_PERMISSIONS = 101;
@@ -27,7 +28,7 @@ public class GetImageUseCase {
     private final String[] CAMERA_PERMISSION = new String[]{"android.permission.CAMERA" };
     private final String[] STORAGE_PERMISSION = new String[]{"android.permission.WRITE_EXTERNAL_STORAGE" };
 
-    public GetImageUseCase(Fragment context) {
+    public GetImageUseCase(Activity context) {
         this.context = context;
     }
 
@@ -49,7 +50,7 @@ public class GetImageUseCase {
         } catch (IOException e) {
             e.printStackTrace();
         }
-        String path = MediaStore.Images.Media.insertImage(context.getActivity().getContentResolver(), thumbnail, "Title", null);
+        String path = MediaStore.Images.Media.insertImage(context.getContentResolver(), thumbnail, "Title", null);
         return path;
     }
 
@@ -79,15 +80,15 @@ public class GetImageUseCase {
     }
 
     public void askForCameraPermission(){
-        ActivityCompat.requestPermissions(context.getActivity(), CAMERA_PERMISSION, REQUEST_CODE_PERMISSIONS);
+        ActivityCompat.requestPermissions(context, CAMERA_PERMISSION, REQUEST_CODE_PERMISSIONS);
     }
     public void askForStoragePermission(){
-        ActivityCompat.requestPermissions(context.getActivity(), STORAGE_PERMISSION, REQUEST_CODE_PERMISSIONS);
+        ActivityCompat.requestPermissions(context, STORAGE_PERMISSION, REQUEST_CODE_PERMISSIONS);
     }
 
     private boolean CameraPermissionGranted(){
 
-            if(ContextCompat.checkSelfPermission(context.getActivity(), CAMERA_PERMISSION[0]) != PackageManager.PERMISSION_GRANTED){
+            if(ContextCompat.checkSelfPermission(context, CAMERA_PERMISSION[0]) != PackageManager.PERMISSION_GRANTED){
                 return false;
             }
 
@@ -95,7 +96,7 @@ public class GetImageUseCase {
     }
     private boolean StoragePermissionGranted(){
 
-        if(ContextCompat.checkSelfPermission(context.getActivity(), STORAGE_PERMISSION[0]) != PackageManager.PERMISSION_GRANTED){
+        if(ContextCompat.checkSelfPermission(context, STORAGE_PERMISSION[0]) != PackageManager.PERMISSION_GRANTED){
             return false;
         }
 
@@ -105,7 +106,7 @@ public class GetImageUseCase {
 
     private boolean allPermissionsGranted(){
         for(String permission : REQUIRED_PERMISSIONS){
-            if(ContextCompat.checkSelfPermission(context.getActivity(), permission) != PackageManager.PERMISSION_GRANTED){
+            if(ContextCompat.checkSelfPermission(context, permission) != PackageManager.PERMISSION_GRANTED){
                 return false;
             }
         }

@@ -9,6 +9,7 @@ public interface OrderDetailsMvc {
 
     interface Listener{
         void onCallUserBtnClicked(User user);
+        void onShowLocationBtnClicked(User user);
         void onCancelOrderBtnClicked();
         void onEditOrderBtnClicked();
     }

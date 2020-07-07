@@ -35,7 +35,7 @@ public class OrdersAdapter extends RecyclerView.Adapter<OrdersAdapter.ViewHolder
     public interface OnItemClickListener {
         void OnItemClicked(Order Order);
         void onShowBtnClicked(Order order);
-        void onShareBtnClicked(Order order);
+        void onLocationBtnClicked(Order order);
         void onStatusBtnClicked(Order order);
     }
 
@@ -105,8 +105,8 @@ public class OrdersAdapter extends RecyclerView.Adapter<OrdersAdapter.ViewHolder
     }
 
     @Override
-    public void onShareBtnClicked(Order order) {
-        mListener.onShareBtnClicked(order);
+    public void onLocationBtnClicked(Order order) {
+        mListener.onLocationBtnClicked(order);
     }
 
     @Override

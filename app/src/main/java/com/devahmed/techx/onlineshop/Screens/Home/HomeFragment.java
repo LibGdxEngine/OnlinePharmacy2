@@ -14,6 +14,7 @@ import com.devahmed.techx.onlineshop.Models.Category;
 import com.devahmed.techx.onlineshop.Common.dependencyInjection.BaseFragment;
 import com.devahmed.techx.onlineshop.Models.ProductSubCategory;
 import com.devahmed.techx.onlineshop.R;
+import com.devahmed.techx.onlineshop.Screens.AddProducts.AddProductActivity;
 import com.devahmed.techx.onlineshop.Screens.Home.UseCases.FetchCategoryUseCase;
 import com.devahmed.techx.onlineshop.Screens.SubCategories.SubCategoriesFragment;
 import com.devahmed.techx.onlineshop.Utils.UtilsDialog;
@@ -99,20 +100,27 @@ public class HomeFragment extends BaseFragment implements FetchCategoryUseCase.L
 
     @Override
     public void onCtegoryLongClick(Category category) {
-        String[] options = {"Edit", "Delete"};
-        mvcImp.showCategoriesOptionsDialog("Choose option" , options , category);
+//        String[] options = {"Edit", "Delete"};
+//        mvcImp.showCategoriesOptionsDialog("Choose option" , options , category);
     }
 
 
     @Override
     public void onChooseCategoryEdit(Category category) {
-        Bundle bundle = new Bundle();
-        bundle.putString("FN" , "EDIT_CATEGORY");
-        bundle.putString("categoryTimeStamp" , category.getTimeStamp().toString());
-        bundle.putString("categoryId" , category.getId());
-        bundle.putString("categoryTitle" , category.getTitle());
-        bundle.putString("categoryImage" , category.getImage());
-        Navigation.findNavController(requireActivity() , R.id.nav_host_fragment).navigate(R.id.nav_add_item ,bundle);
+//        Bundle bundle = new Bundle();
+//        bundle.putString("FN" , "EDIT_CATEGORY");
+//        bundle.putString("categoryTimeStamp" , category.getTimeStamp().toString());
+//        bundle.putString("categoryId" , category.getId());
+//        bundle.putString("categoryTitle" , category.getTitle());
+//        bundle.putString("categoryImage" , category.getImage());
+//        Navigation.findNavController(requireActivity() , R.id.nav_host_fragment).navigate(R.id.nav_add_item ,bundle);
+        Intent intent = new Intent(getActivity(), AddProductActivity.class);
+        intent.putExtra("FN" , "EDIT_CATEGORY");
+        intent.putExtra("categoryTimeStamp" , category.getTimeStamp().toString());
+        intent.putExtra("categoryId" , category.getId());
+        intent.putExtra("categoryTitle" , category.getTitle());
+        intent.putExtra("categoryImage" , category.getImage());
+        startActivity(intent);
     }
 
     @Override
@@ -122,9 +130,13 @@ public class HomeFragment extends BaseFragment implements FetchCategoryUseCase.L
 
     @Override
     public void onAddCategoryBtnClicked() {
-        Bundle bundle = new Bundle();
-        bundle.putString("FN" , "ADD_CATEGORY");
-        Navigation.findNavController(requireActivity() , R.id.nav_host_fragment).navigate(R.id.nav_add_item ,bundle);
+//        Bundle bundle = new Bundle();
+//        bundle.putString("FN" , "ADD_CATEGORY");
+//        Navigation.findNavController(requireActivity() , R.id.nav_host_fragment).navigate(R.id.nav_add_item ,bundle);
+
+        Intent intent = new Intent(getActivity() , AddProductActivity.class);
+        intent.putExtra("FN" , "ADD_CATEGORY");
+        startActivity(intent);
     }
 
     @Override
