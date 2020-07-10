@@ -1,116 +1,42 @@
 {
   "project_info": {
-    "project_number": "43117520551",
-    "firebase_url": "https://techxapp-f1f36.firebaseio.com",
-    "project_id": "techxapp-f1f36",
-    "storage_bucket": "techxapp-f1f36.appspot.com"
+    "project_number": "816430895709",
+    "firebase_url": "https://mercadomart-b1397.firebaseio.com",
+    "project_id": "mercadomart-b1397",
+    "storage_bucket": "mercadomart-b1397.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:43117520551:android:afa50ed2685234d8fd5d82",
+        "mobilesdk_app_id": "1:816430895709:android:8e407ff4b286b6db4633b4",
         "android_client_info": {
-          "package_name": "com.devahmed.techx.demo"
+          "package_name": "com.devahmed.techx.mercadomart"
         }
       },
       "oauth_client": [
         {
-          "client_id": "43117520551-dbs5h48bnhsb11kavl4hhjgnn8njmefe.apps.googleusercontent.com",
+          "client_id": "816430895709-0b8go2mmvumk2vl81ikqhu5qjdbg90ff.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
-            "package_name": "com.devahmed.techx.demo",
+            "package_name": "com.devahmed.techx.mercadomart",
             "certificate_hash": "108534525640e8ce540ba1aff9b72e2934fd8b75"
           }
         },
         {
-          "client_id": "43117520551-pcisk1fjv7ueqihgrbfu6e668cftfa44.apps.googleusercontent.com",
+          "client_id": "816430895709-qj759gcd08onjsnigkenjea5tvuou4dg.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyDVghCDu1iQpLlKBjGzKPQ_trgcgUm15iM"
+          "current_key": "AIzaSyBaiT0CEDnMT7TXqsXZmLGusfEqpHfAurI"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "43117520551-pcisk1fjv7ueqihgrbfu6e668cftfa44.apps.googleusercontent.com",
-              "client_type": 3
-            }
-          ]
-        }
-      }
-    },
-    {
-      "client_info": {
-        "mobilesdk_app_id": "1:43117520551:android:ccb67bbf56bce106fd5d82",
-        "android_client_info": {
-          "package_name": "com.devahmed.techx.onlineshop"
-        }
-      },
-      "oauth_client": [
-        {
-          "client_id": "43117520551-7q4plj8re2a2n64eudkqab196lga7kpa.apps.googleusercontent.com",
-          "client_type": 1,
-          "android_info": {
-            "package_name": "com.devahmed.techx.onlineshop",
-            "certificate_hash": "108534525640e8ce540ba1aff9b72e2934fd8b75"
-          }
-        },
-        {
-          "client_id": "43117520551-pcisk1fjv7ueqihgrbfu6e668cftfa44.apps.googleusercontent.com",
-          "client_type": 3
-        }
-      ],
-      "api_key": [
-        {
-          "current_key": "AIzaSyDVghCDu1iQpLlKBjGzKPQ_trgcgUm15iM"
-        }
-      ],
-      "services": {
-        "appinvite_service": {
-          "other_platform_oauth_client": [
-            {
-              "client_id": "43117520551-pcisk1fjv7ueqihgrbfu6e668cftfa44.apps.googleusercontent.com",
-              "client_type": 3
-            }
-          ]
-        }
-      }
-    },
-    {
-      "client_info": {
-        "mobilesdk_app_id": "1:43117520551:android:578e5ee74ca2137cfd5d82",
-        "android_client_info": {
-          "package_name": "com.devahmed.techx.onlineshopdemo"
-        }
-      },
-      "oauth_client": [
-        {
-          "client_id": "43117520551-7keq37oo0tu63knhtvfqssd77it9gs7i.apps.googleusercontent.com",
-          "client_type": 1,
-          "android_info": {
-            "package_name": "com.devahmed.techx.onlineshopdemo",
-            "certificate_hash": "108534525640e8ce540ba1aff9b72e2934fd8b75"
-          }
-        },
-        {
-          "client_id": "43117520551-pcisk1fjv7ueqihgrbfu6e668cftfa44.apps.googleusercontent.com",
-          "client_type": 3
-        }
-      ],
-      "api_key": [
-        {
-          "current_key": "AIzaSyDVghCDu1iQpLlKBjGzKPQ_trgcgUm15iM"
-        }
-      ],
-      "services": {
-        "appinvite_service": {
-          "other_platform_oauth_client": [
-            {
-              "client_id": "43117520551-pcisk1fjv7ueqihgrbfu6e668cftfa44.apps.googleusercontent.com",
+              "client_id": "816430895709-qj759gcd08onjsnigkenjea5tvuou4dg.apps.googleusercontent.com",
               "client_type": 3
             }
           ]
