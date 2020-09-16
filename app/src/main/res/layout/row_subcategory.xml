@@ -22,7 +22,7 @@
             android:padding="10dp"
             android:text="Subcategory"
             android:textAlignment="center"
-            android:textColor="@color/font_color"
+            android:textColor="@color/colorPrimary"
             android:textSize="18sp"
             android:textStyle="bold"
             app:layout_constraintBottom_toBottomOf="parent"

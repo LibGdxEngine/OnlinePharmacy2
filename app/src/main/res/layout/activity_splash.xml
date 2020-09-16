@@ -4,14 +4,14 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#ffa7bb"
+    android:background="@color/common_google_signin_btn_text_dark_default"
     tools:context=".Screens.Splash.SplashActivity">
 
     <ImageView
         android:id="@+id/splashimage"
         android:layout_width="300dp"
         android:layout_height="350dp"
-        android:background="@drawable/splash_logo"
+        android:background="@drawable/fox_mart_logo"
         android:scaleType="fitCenter"
         android:visibility="visible"
         app:layout_constraintBottom_toBottomOf="parent"
