@@ -5,7 +5,7 @@ apply plugin: 'com.google.android.gms.strict-version-matcher-plugin'
 android {
     signingConfigs {
         release {
-            storeFile file('/home/libgdx/AndroidStudioProjects/newFoxMart/MarcedoApp.jks')
+            storeFile file('/home/libgdx/AndroidStudioProjects/newFoxMart/foxmart.jks')
             storePassword 'ahmed1998'
             keyAlias = 'Key0'
             keyPassword 'ahmed1998'
@@ -16,8 +16,8 @@ android {
         applicationId "com.devahmed.techx.onlineshop"
         minSdkVersion 21
         targetSdkVersion 28
-        versionCode 2
-        versionName "1.0"
+        versionCode 3
+        versionName "3.0"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         vectorDrawables.useSupportLibrary = true
     }

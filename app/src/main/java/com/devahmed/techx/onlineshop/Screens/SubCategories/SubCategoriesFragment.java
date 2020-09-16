@@ -58,8 +58,8 @@ public class SubCategoriesFragment extends AppCompatActivity implements FetchSub
 
     @Override
     public void onSubCategoryLongClicked(SubCategory subCategory) {
-//        String[] options = {"Edit", "Delete"};
-//        mvcImp.showCategoriesOptionsDialog("Choose option" , options , subCategory);
+        String[] options = {"Edit", "Delete"};
+        mvcImp.showCategoriesOptionsDialog("Choose option" , options , subCategory);
     }
 
     @Override

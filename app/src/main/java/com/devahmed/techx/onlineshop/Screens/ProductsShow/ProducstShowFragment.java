@@ -64,8 +64,8 @@ public class ProducstShowFragment extends AppCompatActivity
 
     @Override
     public void onProductLongClicked(Product product) {
-//        String[] options = {"Edit", "Delete"};
-//        mvcImp.showProductsOptionsDialog("Choose Option" , options , product);
+        String[] options = {"Edit", "Delete"};
+        mvcImp.showProductsOptionsDialog("Choose Option" , options , product);
     }
 
     @Override

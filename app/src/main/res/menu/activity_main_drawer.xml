@@ -40,13 +40,13 @@
 
     </group>
 
-<!--    <item android:title="ADMIN">-->
-<!--        <menu>-->
-<!--            <item-->
-<!--                android:id="@+id/adminDashboard"-->
-<!--                android:icon="@drawable/ic_create_black_24dp"-->
-<!--                android:title="@string/admin_dashboard" />-->
-<!--        </menu>-->
-<!--    </item>-->
+    <item android:title="ADMIN">
+        <menu>
+            <item
+                android:id="@+id/adminDashboard"
+                android:icon="@drawable/ic_create_black_24dp"
+                android:title="@string/admin_dashboard" />
+        </menu>
+    </item>
 
 </menu>

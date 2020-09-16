@@ -69,8 +69,8 @@ public class HomeFragment extends BaseFragment implements FetchCategoryUseCase.L
 
     @Override
     public void onOffersLongClick(ProductSubCategory subCategory) {
-//        String[] options = {"Edit", "Delete"};
-//        mvcImp.showOffersOptionsDialog("Choose Option" , options , subCategory);
+        String[] options = {"Edit", "Delete"};
+        mvcImp.showOffersOptionsDialog("Choose Option" , options , subCategory);
     }
 
     @Override
@@ -103,8 +103,8 @@ public class HomeFragment extends BaseFragment implements FetchCategoryUseCase.L
 
     @Override
     public void onCtegoryLongClick(Category category) {
-//        String[] options = {"Edit", "Delete"};
-//        mvcImp.showCategoriesOptionsDialog("Choose option" , options , category);
+        String[] options = {"Edit", "Delete"};
+        mvcImp.showCategoriesOptionsDialog("Choose option" , options , category);
     }
 
 
