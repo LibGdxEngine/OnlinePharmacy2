@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.devahmed.techx.onlineshop">
+    package="com.devahmed.techx.aswaqmisr">
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
     <uses-permission android:name="android.permission.INTERNET" />
@@ -15,26 +15,26 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name="com.devahmed.techx.onlineshop.Screens.HowDidYouHearAboutUs.HowDidYouHearAboutUsActivity"></activity>
-        <activity android:name="com.devahmed.techx.onlineshop.Screens.LocationAtFirstTime.LocationAtFirstTime" />
-        <activity android:name="com.devahmed.techx.onlineshop.Screens.SubCategories.SubCategoriesFragment" />
-        <activity android:name="com.devahmed.techx.onlineshop.Screens.ProductsShow.ProducstShowFragment"/>
-        <activity android:name="com.devahmed.techx.onlineshop.Screens.AddProducts.AddProductActivity"/>
-        <activity android:name="com.devahmed.techx.onlineshop.Screens.Splash.SplashActivity">
+        <activity android:name="com.devahmed.techx.aswaqmisr.Screens.HowDidYouHearAboutUs.HowDidYouHearAboutUsActivity"></activity>
+        <activity android:name="com.devahmed.techx.aswaqmisr.Screens.LocationAtFirstTime.LocationAtFirstTime" />
+        <activity android:name="com.devahmed.techx.aswaqmisr.Screens.SubCategories.SubCategoriesFragment" />
+        <activity android:name="com.devahmed.techx.aswaqmisr.Screens.ProductsShow.ProducstShowFragment"/>
+        <activity android:name="com.devahmed.techx.aswaqmisr.Screens.AddProducts.AddProductActivity"/>
+        <activity android:name="com.devahmed.techx.aswaqmisr.Screens.Splash.SplashActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name="com.devahmed.techx.onlineshop.Screens.LoginRegister.LoginActivity" />
+        <activity android:name="com.devahmed.techx.aswaqmisr.Screens.LoginRegister.LoginActivity" />
         <activity
-            android:name="com.devahmed.techx.onlineshop.MainActivity"
+            android:name="com.devahmed.techx.aswaqmisr.MainActivity"
             android:label="@string/app_name"
             android:theme="@style/AppTheme.NoActionBar" />
 
         <provider
-            android:name="com.devahmed.techx.onlineshop.Utils.GenericFileProvider"
+            android:name="com.devahmed.techx.aswaqmisr.Utils.GenericFileProvider"
             android:authorities="${applicationId}.provider"
             android:exported="false"
             android:grantUriPermissions="true">
@@ -43,7 +43,7 @@
                 android:resource="@xml/provider_paths" />
         </provider>
 
-        <service android:name="com.devahmed.techx.onlineshop.Utils.NotificationsService">
+        <service android:name="com.devahmed.techx.aswaqmisr.Utils.NotificationsService">
             <intent-filter>
                 <action android:name="com.google.firebase.MESSAGING_EVENT" />
             </intent-filter>

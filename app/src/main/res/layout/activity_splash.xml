@@ -5,13 +5,14 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/common_google_signin_btn_text_dark_default"
+    android:backgroundTint="#F38023"
     tools:context=".Screens.Splash.SplashActivity">
 
     <ImageView
         android:id="@+id/splashimage"
-        android:layout_width="300dp"
-        android:layout_height="350dp"
-        android:background="@drawable/fox_mart_logo"
+        android:layout_width="250dp"
+        android:layout_height="250dp"
+        android:background="@drawable/logo_aswaq_misr"
         android:scaleType="fitCenter"
         android:visibility="visible"
         app:layout_constraintBottom_toBottomOf="parent"

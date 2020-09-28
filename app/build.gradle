@@ -5,7 +5,7 @@ apply plugin: 'com.google.android.gms.strict-version-matcher-plugin'
 android {
     signingConfigs {
         release {
-            storeFile file('/home/libgdx/AndroidStudioProjects/newFoxMart/foxmart.jks')
+            storeFile file('/home/libgdx/AndroidStudioProjects/newFoxMart/aswaqmisr.jks')
             storePassword 'ahmed1998'
             keyAlias = 'Key0'
             keyPassword 'ahmed1998'
@@ -13,7 +13,7 @@ android {
     }
     compileSdkVersion 28
     defaultConfig {
-        applicationId "com.devahmed.techx.onlineshop"
+        applicationId "com.devahmed.techx.aswaqmisr"
         minSdkVersion 21
         targetSdkVersion 28
         versionCode 3

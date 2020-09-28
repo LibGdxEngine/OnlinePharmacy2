@@ -1,124 +1,42 @@
 {
   "project_info": {
-    "project_number": "43117520551",
-    "firebase_url": "https://techxapp-f1f36.firebaseio.com",
-    "project_id": "techxapp-f1f36",
-    "storage_bucket": "techxapp-f1f36.appspot.com"
+    "project_number": "458132569466",
+    "firebase_url": "https://aswaqmisr-724af.firebaseio.com",
+    "project_id": "aswaqmisr-724af",
+    "storage_bucket": "aswaqmisr-724af.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:43117520551:android:afa50ed2685234d8fd5d82",
+        "mobilesdk_app_id": "1:458132569466:android:780e5c327688770e786ac3",
         "android_client_info": {
-          "package_name": "com.devahmed.techx.demo"
+          "package_name": "com.devahmed.techx.aswaqmisr"
         }
       },
       "oauth_client": [
         {
-          "client_id": "43117520551-dbs5h48bnhsb11kavl4hhjgnn8njmefe.apps.googleusercontent.com",
+          "client_id": "458132569466-rg8btbs6afav3q9ngg5g9onefq425gqa.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
-            "package_name": "com.devahmed.techx.demo",
+            "package_name": "com.devahmed.techx.aswaqmisr",
             "certificate_hash": "108534525640e8ce540ba1aff9b72e2934fd8b75"
           }
         },
         {
-          "client_id": "43117520551-pcisk1fjv7ueqihgrbfu6e668cftfa44.apps.googleusercontent.com",
+          "client_id": "458132569466-27irv4ie2khp8u9i31pn9umjrh0jodjl.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyDVghCDu1iQpLlKBjGzKPQ_trgcgUm15iM"
+          "current_key": "AIzaSyDGF10Qf5FL_Ai_T7gcj26lPnCJNeMdNho"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "43117520551-pcisk1fjv7ueqihgrbfu6e668cftfa44.apps.googleusercontent.com",
-              "client_type": 3
-            }
-          ]
-        }
-      }
-    },
-    {
-      "client_info": {
-        "mobilesdk_app_id": "1:43117520551:android:ccb67bbf56bce106fd5d82",
-        "android_client_info": {
-          "package_name": "com.devahmed.techx.onlineshop"
-        }
-      },
-      "oauth_client": [
-        {
-          "client_id": "43117520551-atv16fmlq6hi6qi2m5a2f0cjcqke9vhv.apps.googleusercontent.com",
-          "client_type": 1,
-          "android_info": {
-            "package_name": "com.devahmed.techx.onlineshop",
-            "certificate_hash": "108534525640e8ce540ba1aff9b72e2934fd8b75"
-          }
-        },
-        {
-          "client_id": "43117520551-o2q10b1ce71n7jtr1dhhb21ke458pj6a.apps.googleusercontent.com",
-          "client_type": 1,
-          "android_info": {
-            "package_name": "com.devahmed.techx.onlineshop",
-            "certificate_hash": "57131eed713e58e267467ca06a9a1c8029251c6e"
-          }
-        },
-        {
-          "client_id": "43117520551-pcisk1fjv7ueqihgrbfu6e668cftfa44.apps.googleusercontent.com",
-          "client_type": 3
-        }
-      ],
-      "api_key": [
-        {
-          "current_key": "AIzaSyDVghCDu1iQpLlKBjGzKPQ_trgcgUm15iM"
-        }
-      ],
-      "services": {
-        "appinvite_service": {
-          "other_platform_oauth_client": [
-            {
-              "client_id": "43117520551-pcisk1fjv7ueqihgrbfu6e668cftfa44.apps.googleusercontent.com",
-              "client_type": 3
-            }
-          ]
-        }
-      }
-    },
-    {
-      "client_info": {
-        "mobilesdk_app_id": "1:43117520551:android:578e5ee74ca2137cfd5d82",
-        "android_client_info": {
-          "package_name": "com.devahmed.techx.onlineshopdemo"
-        }
-      },
-      "oauth_client": [
-        {
-          "client_id": "43117520551-4g2dgkr9gof7e74u8kfsmlnbiroqb4s4.apps.googleusercontent.com",
-          "client_type": 1,
-          "android_info": {
-            "package_name": "com.devahmed.techx.onlineshopdemo",
-            "certificate_hash": "108534525640e8ce540ba1aff9b72e2934fd8b75"
-          }
-        },
-        {
-          "client_id": "43117520551-pcisk1fjv7ueqihgrbfu6e668cftfa44.apps.googleusercontent.com",
-          "client_type": 3
-        }
-      ],
-      "api_key": [
-        {
-          "current_key": "AIzaSyDVghCDu1iQpLlKBjGzKPQ_trgcgUm15iM"
-        }
-      ],
-      "services": {
-        "appinvite_service": {
-          "other_platform_oauth_client": [
-            {
-              "client_id": "43117520551-pcisk1fjv7ueqihgrbfu6e668cftfa44.apps.googleusercontent.com",
+              "client_id": "458132569466-27irv4ie2khp8u9i31pn9umjrh0jodjl.apps.googleusercontent.com",
               "client_type": 3
             }
           ]
