@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "613140456179",
+    "firebase_url": "https://tech4funecommerce.firebaseio.com",
+    "project_id": "tech4funecommerce",
+    "storage_bucket": "tech4funecommerce.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:613140456179:android:03febf53947e8e7587cd86",
+        "android_client_info": {
+          "package_name": "com.devahmed.tech4fun.ecommerce"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "613140456179-bs7i730qmgdv98nfiug7ui1kbi4e0vu4.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.devahmed.tech4fun.ecommerce",
+            "certificate_hash": "108534525640e8ce540ba1aff9b72e2934fd8b75"
+          }
+        },
+        {
+          "client_id": "613140456179-mluph0627o7t7vd0lu77tj0cr4pui906.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBO7HdxKgjCDh_AFf4-qHUeg6OYcuvZmrY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "613140456179-mluph0627o7t7vd0lu77tj0cr4pui906.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
